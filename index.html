@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Form</title>
+    <style>
+        /* Your CSS styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Your Address</h2>
+        <form id="addressForm">
+            <label for="product">Product:</label><br>
+            <input type="text" id="product" name="product" value="Cake" readonly><br>
+            <label for="address">Your Address:</label><br>
+            <textarea id="address" name="address" rows="4" required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("addressForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let product = document.getElementById("product").value;
+            let address = document.getElementById("address").value;
+
+            // Make an AJAX request to send the data to the server
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "send_email.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Handle success response if needed
+                        alert("Address submitted successfully!");
+                    } else {
+                        // Handle error response if needed
+                        alert("Error submitting address!");
+                    }
+                }
+            };
+            xhr.send("product=" + encodeURIComponent(product) + "&address=" + encodeURIComponent(address));
+        });
+    </script>
+</body>
+</html>
