@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+</head>
+<body>
+
+<h1>Your Shopping Cart</h1>
+
+<div id="cartItems">
+  <!-- Cart items will be displayed here dynamically -->
+</div>
+
+<div id="totalValue"></div>
+
+<div id="cartControls">
+  <button onclick="clearCart()">Clear Cart</button>
+  <button onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+  // Fetch cart items from storage
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function displayCartItems() {
+    let cartItemsDiv = document.getElementById('cartItems');
+
+    if (cartItems.length === 0) {
+      cartItemsDiv.innerHTML = '<p>Your cart is empty</p>';
+    } else {
+      cartItemsDiv.innerHTML = '<ul>';
+      let totalValue = 0;
+      cartItems.forEach((item, index) => {
+        totalValue += item.price * item.quantity; // Calculate total value
+        cartItemsDiv.innerHTML += `
+          <li>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}
+            <button onclick="removeItem(${index})">Remove</button>
+          </li>`;
+      });
+      cartItemsDiv.innerHTML += '</ul>';
+      document.getElementById('totalValue').innerHTML = `<p>Total Value: Rs.${totalValue.toFixed(2)}</p>`;
+    }
+  }
+
+  function removeItem(index) {
+    cartItems.splice(index, 1); // Remove the item from the cart array
+    localStorage.setItem('cart', JSON.stringify(cartItems)); // Update localStorage
+    displayCartItems(); // Refresh cart display
+  }
+
+  function clearCart() {
+    cartItems = []; // Remove all items from the cart array
+    localStorage.setItem('cart', JSON.stringify(cartItems)); // Update localStorage
+    displayCartItems(); // Refresh cart display
+  }
+
+  function checkout() {
+    // Assuming the checkout page is named checkout.html
+    // You can replace it with your actual checkout page
+    window.location.href = 'checkout.html';
+  }
+
+  // Initial display of cart items
+  displayCartItems();
+</script>
+
+</body>
+</html>
