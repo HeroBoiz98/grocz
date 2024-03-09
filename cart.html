@@ -4,20 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    #cartItems {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #cartItems li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #totalValue {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    #cartControls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
 
-<h1>Your Shopping Cart</h1>
+<div class="container">
 
-<div id="cartItems">
-  <!-- Cart items will be displayed here dynamically -->
-</div>
+  <h1>Your Shopping Cart</h1>
 
-<div id="totalValue"></div>
+  <div id="cartItems">
+    <!-- Cart items will be displayed here dynamically -->
+  </div>
 
-<div id="cartControls">
-  <button onclick="clearCart()">Clear Cart</button>
-  <button onclick="redirectToCheckout()">Checkout</button> <!-- New button for checkout -->
+  <div id="totalValue"></div>
+
+  <div id="cartControls">
+    <button onclick="clearCart()">Clear Cart</button>
+    <button onclick="redirectToCheckout()">Checkout</button> <!-- New button for checkout -->
+  </div>
+
 </div>
 
 <script>
@@ -26,21 +89,26 @@
 
   function displayCartItems() {
     let cartItemsDiv = document.getElementById('cartItems');
+    let totalValueDiv = document.getElementById('totalValue');
 
     if (cartItems.length === 0) {
       cartItemsDiv.innerHTML = '<p>Your cart is empty</p>';
+      totalValueDiv.innerHTML = '';
     } else {
-      cartItemsDiv.innerHTML = '<ul>';
       let totalValue = 0;
+      let cartList = '<ul>';
+
       cartItems.forEach((item, index) => {
         totalValue += item.price * item.quantity; // Calculate total value
-        cartItemsDiv.innerHTML += `
-          <li>${item.name} - $${item.price} - Quantity: ${item.quantity}
+        cartList += `
+          <li>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}
             <button onclick="removeItem(${index})">Remove</button>
           </li>`;
       });
-      cartItemsDiv.innerHTML += '</ul>';
-      document.getElementById('totalValue').innerHTML = `<p>Total Value: $${totalValue.toFixed(2)}</p>`;
+
+      cartList += '</ul>';
+      cartItemsDiv.innerHTML = cartList;
+      totalValueDiv.innerHTML = `<p>Total Value: Rs.${totalValue.toFixed(2)}</p>`;
     }
   }
 
