@@ -17,7 +17,7 @@
 
 <div id="cartControls">
   <button onclick="clearCart()">Clear Cart</button>
-  <button onclick="checkout()">Checkout</button>
+  <button onclick="redirectToCheckout()">Checkout</button> <!-- New button for checkout -->
 </div>
 
 <script>
@@ -35,12 +35,12 @@
       cartItems.forEach((item, index) => {
         totalValue += item.price * item.quantity; // Calculate total value
         cartItemsDiv.innerHTML += `
-          <li>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}
+          <li>${item.name} - $${item.price} - Quantity: ${item.quantity}
             <button onclick="removeItem(${index})">Remove</button>
           </li>`;
       });
       cartItemsDiv.innerHTML += '</ul>';
-      document.getElementById('totalValue').innerHTML = `<p>Total Value: Rs.${totalValue.toFixed(2)}</p>`;
+      document.getElementById('totalValue').innerHTML = `<p>Total Value: $${totalValue.toFixed(2)}</p>`;
     }
   }
 
@@ -56,10 +56,9 @@
     displayCartItems(); // Refresh cart display
   }
 
-  function checkout() {
-    // Assuming the checkout page is named checkout.html
-    // You can replace it with your actual checkout page
-    window.location.href = 'checkout.html';
+  // Redirect to checkout.html
+  function redirectToCheckout() {
+    window.location.href = "checkout.html";
   }
 
   // Initial display of cart items
