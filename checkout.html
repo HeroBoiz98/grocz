@@ -81,24 +81,34 @@
 
   // Submit form event handler
   document.querySelector('#checkoutForm').addEventListener('submit', function(e) {
-    // Construct message body including cart items
-    let messageBody = `Billing Information:\n`;
-    messageBody += `Full Name: ${document.getElementById('fullname').value}\n`;
-    messageBody += `Email: ${document.getElementById('email').value}\n`;
-    messageBody += `Phone Number: ${document.getElementById('phone').value}\n\n`;
+    // Validate phone number, name, and address fields
+    let phone = document.getElementById('phone').value;
+    let fullname = document.getElementById('fullname').value;
+    let address = document.getElementById('address').value;
 
-    messageBody += `Shipping Information:\n`;
-    messageBody += `Address: ${document.getElementById('address').value}\n`;
-    messageBody += `City: ${document.getElementById('city').value}\n`;
-    messageBody += `ZIP Code: ${document.getElementById('zip').value}\n\n`;
+    if (!phone || !fullname || !address) {
+      alert("Please fill in all required fields: Phone Number, Full Name, and Address.");
+      e.preventDefault(); // Prevent form submission
+    } else {
+      // Construct message body including cart items
+      let messageBody = `Billing Information:\n`;
+      messageBody += `Full Name: ${fullname}\n`;
+      messageBody += `Email: ${document.getElementById('email').value}\n`;
+      messageBody += `Phone Number: ${phone}\n\n`;
 
-    messageBody += `Cart Items:\n`;
-    cartItems.forEach(item => {
-      messageBody += `${item.name} - Rs.${item.price} - Quantity: ${item.quantity}\n`;
-    });
+      messageBody += `Shipping Information:\n`;
+      messageBody += `Address: ${address}\n`;
+      messageBody += `City: ${document.getElementById('city').value}\n`;
+      messageBody += `ZIP Code: ${document.getElementById('zip').value}\n\n`;
 
-    // Add the message body to the hidden input field
-    document.getElementById('cartItems').value = messageBody;
+      messageBody += `Cart Items:\n`;
+      cartItems.forEach(item => {
+        messageBody += `${item.name} - Rs.${item.price} - Quantity: ${item.quantity}\n`;
+      });
+
+      // Add the message body to the hidden input field
+      document.getElementById('cartItems').value = messageBody;
+    }
   });
 </script>
 
