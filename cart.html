@@ -13,7 +13,7 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 90%;
       margin: 20px auto;
       padding: 20px;
       background-color: #fff;
@@ -29,6 +29,7 @@
     #cartItems {
       list-style-type: none;
       padding: 0;
+      margin-bottom: 20px;
     }
 
     #cartItems li {
@@ -39,14 +40,16 @@
     #totalValue {
       text-align: right;
       margin-top: 20px;
-      font-size: 18px;
+      font-size: 16px;
       color: #333;
+      font-weight: bold;
     }
 
     #cartControls {
       margin-top: 20px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
     }
 
     button {
@@ -57,10 +60,23 @@
       color: #fff;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    button.checkout-button {
+      background-color: #007bff;
     }
 
     button:hover {
       background-color: #45a049;
+    }
+
+    .item-details {
+      margin-bottom: 10px;
+    }
+
+    .item-price {
+      font-weight: bold;
     }
   </style>
 </head>
@@ -70,15 +86,15 @@
 
   <h1>Your Shopping Cart</h1>
 
-  <div id="cartItems">
+  <ul id="cartItems">
     <!-- Cart items will be displayed here dynamically -->
-  </div>
+  </ul>
 
   <div id="totalValue"></div>
 
   <div id="cartControls">
     <button onclick="clearCart()">Clear Cart</button>
-    <button onclick="redirectToCheckout()">Checkout</button> <!-- New button for checkout -->
+    <button onclick="redirectToCheckout()" class="checkout-button">Checkout</button>
   </div>
 
 </div>
@@ -88,27 +104,31 @@
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
   function displayCartItems() {
-    let cartItemsDiv = document.getElementById('cartItems');
+    let cartItemsList = document.getElementById('cartItems');
     let totalValueDiv = document.getElementById('totalValue');
 
     if (cartItems.length === 0) {
-      cartItemsDiv.innerHTML = '<p>Your cart is empty</p>';
+      cartItemsList.innerHTML = '<p>Your cart is empty</p>';
       totalValueDiv.innerHTML = '';
     } else {
       let totalValue = 0;
-      let cartList = '<ul>';
+      let cartList = '';
 
       cartItems.forEach((item, index) => {
         totalValue += item.price * item.quantity; // Calculate total value
         cartList += `
-          <li>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}
+          <li>
+            <div class="item-details">
+              <span>${item.name}</span><br>
+              <span class="item-price">Rs.${(item.price * item.quantity).toFixed(2)}</span><br>
+              <span>Quantity: ${item.quantity}</span>
+            </div>
             <button onclick="removeItem(${index})">Remove</button>
           </li>`;
       });
 
-      cartList += '</ul>';
-      cartItemsDiv.innerHTML = cartList;
-      totalValueDiv.innerHTML = `<p>Total Value: Rs.${totalValue.toFixed(2)}</p>`;
+      cartItemsList.innerHTML = cartList;
+      totalValueDiv.innerHTML = `<p>Total: Rs.${totalValue.toFixed(2)}</p>`;
     }
   }
 
