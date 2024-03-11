@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-container input[type=text] {
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            padding: 10px;
+            width: 150px;
+            height: 240px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product img {
+            width: 80px;
+            height: 100px;
+            border-radius: 10%;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .product button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 12px;
+        }
+
+        .product button:hover {
+            background-color: #45a049;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .cart-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #cart_popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 128, 0, 0.8);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 9999;
+        }
+        .navbar {
+            background-color: #4d4b4b;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: transparent;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+            }
+            .navbar a {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a  onclick="scrollToBadsha()">Badsha</a>
+        <a onclick="scrollToEverest()">Everest</a>
+        <a onclick="scrollToRamdev()">Ramdev</a>
+        <a onclick="redirectToPage('index.html')">-Home- </a>
+    </div>
+    
+<div class="container">
+    <h1>Masala Section</h1>
+
+    <div id="Everest">
+    </div>
+<h1>EVEREST MASALA SPECIALS</h1>
+    <div id="productContainer" style="display: flex; flex-wrap: wrap;">
+
+        <div class="product">
+            <img src="https://www.xenfast.com/wp-content/uploads/2022/06/1-34.webp" alt="Product 1">
+            <div class="product-details">
+                <div class="product-name">Everest - Coriander Powder - 100g</div>
+                <div class="product-price">Rs.10</div>
+                <button onclick="addToCart('Everest - Coriander Powder - 100G ', 10)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/81xMTQInyML._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
+            <div class="product-details">
+                <div class="product-name">Everest BlackPepperPowder  100g</div>
+                <div class="product-price">Rs.5</div>
+                <button onclick="addToCart('Everest BlackPepperPowder 100g', 5.00)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/81T7XoZ2b2L._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
+            <div class="product-details">
+                <div class="product-name">Everest Garam Masala - 100g  </div>
+                <div class="product-price">Rs.52</div>
+                <button onclick="addToCart('Everest Garam Masala - 100g', 52.00)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/61hjaXERodL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
+            <div class="product-details">
+                <div class="product-name">Everest Tikhalal - Red Chilli Powder </div>
+                <div class="product-price">Rs.10</div>
+                <button onclick="addToCart('Everest Tikhalal - red chilli powder', 10.00)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/71GZsVKyPwL.jpg" alt="Product 2">
+            <div class="product-details">
+                <div class="product-name">Everest Sabji Masala - 100g  </div>
+                <div class="product-price">Rs.38</div>
+                <button onclick="addToCart('Everest Sabji Masala', 38.00)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/61zO-8V6qPL.jpg" alt="Product 2">
+            <div class="product-details">
+                <div class="product-name">Everest Turmeric 100g</div>
+                <div class="product-price">Rs.10</div>
+                <button onclick="addToCart('Everest Turmeric 100g', 10.00)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1></h1>
+    
+        <div id="Badshah">
+        </div>
+    <h1>BADSHAH MASALA SPECIALS</h1>
+        <div id="productContainer" style="display: flex; flex-wrap: wrap;">       
+        <div class="product">
+            <img src="https://www.sattvicfoods.in/cdn/shop/products/turmeric-powder-isolated-white.jpg?height=1946&pad_color=fff&v=1692947397&width=1946" alt="Product 2">
+            <div class="product-details">
+                <div class="product-name">Badshah Turmeric 100g</div>
+                <div class="product-price">Rs.10</div>
+                <button onclick="addToCart('Badshah Turmeric 100g', 10.00)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/81QGnYp9r8L._AC_UF350,350_QL80_.jpg" alt="Product 2">
+            <div class="product-details">
+                <div class="product-name">Badshah Chilli Powder 100g</div>
+                <div class="product-price">Rs.10</div>
+                <button onclick="addToCart('Badshah Chilli Powder 100g', 10.00)">Add to Cart</button>
+            </div>
+        </div>
+</div>
+</div>
+<div class="container">
+
+
+    <div id="Ramdev">
+    </div>
+<h1>RAMDEV MASALA SPECIALS</h1>
+    <div id="productContainer" style="display: flex; flex-wrap: wrap;">  
+<div class="product">
+    <img src="        https://m.media-amazon.com/images/I/71Pxp6L+2FL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
+    <div class="product-details">
+        <div class="product-name">Ramdev Turmeric Powder 100g</div>
+        <div class="product-price">Rs.10</div>
+        <button onclick="addToCart('Ramdev Turmeric Powder 100g', 10.00)">Add to Cart</button>
+    </div>
+</div>
+<div class="product">
+    <img src="https://www.bigbasket.com/media/uploads/p/l/70001446_1-ramdev-coriander-powder.jpg" alt="Product 2">
+    <div class="product-details">
+        <div class="product-name">Ramdev Coriander Powder 100g</div>
+        <div class="product-price">Rs.10</div>
+        <button onclick="addToCart('Ramdev Coriander Powder 100g', 10.00)">Add to Cart</button>
+    </div>
+</div>
+<div class="product">
+    <img src="https://ramdevstore.com/wp-content/uploads/2023/09/biryani-pulao-masala.jpg.webp" alt="Product 2">
+    <div class="product-details">
+        <div class="product-name">Ramdev pulav masala 100g</div>
+        <div class="product-price">Rs.10</div>
+        <button onclick="addToCart('Ramdev pulav masala 100g', 10.00)">Add to Cart</button>
+    </div>
+</div>
+<div class="product">
+    <img src="https://ramdevstore.com/wp-content/uploads/2023/09/ramdev-chilli-powder-1.jpg" alt="Product 2">
+    <div class="product-details">
+        <div class="product-name">Ramdev Chilli Powder 100g</div>
+        <div class="product-price">Rs.60</div>
+        <button onclick="addToCart('Ramdev Chilli Powder 100g', 60.00)">Add to Cart</button>
+    </div>
+</div>
+    </div>
+</div>
+
+<a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
+
+<div id="searchPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closeSearch()">&times;</span>
+        <input type="text" id="searchInputPopup" onkeyup="searchProducts()" placeholder="Search for products...">
+        <div id="searchResults"></div>
+    </div>
+</div>
+
+<div id="cart_popup"></div>
+
+<script>
+    function redirectToPage(nextPage) {
+    window.location.href = nextPage; 
+}
+
+    function scrollToBadsha() {
+            var element = document.getElementById("Badshah");
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        function scrollToEverest() {
+            var element = document.getElementById("Everest");
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        function scrollToRamdev() {
+            var element = document.getElementById("Ramdev");
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    function addToCart(name, price) {
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        let found = false;
+        cartItems.forEach(item => {
+            if (item.name === name) {
+                item.quantity++;
+                found = true;
+            }
+        });
+
+        if (!found) {
+            cartItems.push({ name: name, price: price, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+
+        // Show pop-up message
+        showCartPopup(name);
+    }
+
+    function showCartPopup(productName) {
+        const cartPopup = document.getElementById('cart_popup');
+        cartPopup.innerText = `${productName} added to cart!`;
+        cartPopup.style.display = 'block';
+
+        setTimeout(() => {
+            cartPopup.style.display = 'none';
+        }, 2000);
+    }
+
+    function openSearch() {
+        document.getElementById('searchPopup').style.display = 'flex';
+    }
+
+    function closeSearch() {
+        document.getElementById('searchPopup').style.display = 'none';
+    }
+
+    function searchProducts() {
+        let input, filter, products, productName, i;
+        input = document.getElementById('searchInputPopup');
+        filter = input.value.toUpperCase();
+        products = document.getElementById('productContainer').getElementsByClassName('product');
+        let searchResults = '';
+
+        for (i = 0; i < products.length; i++) {
+            productName = products[i].getElementsByClassName('product-name')[0];
+            if (productName.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                searchResults += products[i].outerHTML;
+            }
+        }
+
+        document.getElementById('searchResults').innerHTML = searchResults;
+    }
+</script>
+
+</body>
+</html>
