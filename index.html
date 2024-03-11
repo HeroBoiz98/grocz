@@ -165,7 +165,73 @@
             display: none;
             z-index: 9999;
         }
-        
+        .interactive-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card {
+    flex: 0 1 calc(50% - 20px);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.card button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+}
+
+.card button:hover {
+    background-color: #45a049;
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        flex: 0 1 calc(100% - 20px);
+    }
+}
+
+
+.interactive-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    flex: 0 1 calc(50% - 20px);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 10px 20px;
+    max-width: 400px;
+}
+
     </style>
 </head>
 <body>
@@ -192,10 +258,34 @@
         <div id="searchResults"></div>
     </div>
 </div>
-
+<div class="interactive-cards">
+    <div class="card">
+        <h2>Dairy Products</h2>
+        <p>EasyGroc</p>
+        <button onclick="redirectToPage('dairy_pro')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Cold Drinks</h2>
+        <p>EasyGroc</p>
+        <button onclick="redirectToPage('cold_drinks_product.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>House Holds</h2>
+        <p>EasyGroc</p>
+        <button onclick="redirectToPage('House_Holds_Products.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Soap & Shampoo</h2>
+        <p>EasyGroc</p>
+        <button onclick="redirectToPage('soap_and_shampoo_products.html')">View Details</button>
+    </div>
 <div id="cart_popup"></div>
 
 <script>
+    function redirectToPage(nextPage) {
+    window.location.href = nextPage; 
+}
+
     function addToCart(name, price) {
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
