@@ -759,25 +759,27 @@ body {
     object-fit: cover; /* Maintain aspect ratio and cover the entire slide */
 }
 .slideshow-container {
-    width: 600px; /* Set the width of the carousel */
-    height: 300px; /* Set the height of the carousel */
-    overflow: hidden; /* Hide overflowing content */
-    position: relative; /* Add position relative for absolute positioning of slides */
-    margin: 0 auto; /* Center the carousel horizontally */
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
 }
 
 .slide {
-    width: 100%; /* Set the width of the slides to fill the carousel */
-    height: 100%; /* Set the height of the slides to fill the carousel */
-    position: absolute; /* Position slides absolutely */
-    top: 0; /* Position slide to the top of the carousel */
-    left: 0; /* Position slide to the left of the carousel */
+    display: none;
+    width: 100%;
 }
 
 .slide img {
-    width: 100%; /* Set the width of the image to fill the slide */
-    height: 100%; /* Set the height of the image to fill the slide */
-    object-fit: cover; /* Maintain aspect ratio and cover the entire slide */
+    width: 100%;
+    height: auto;
+}
+
+/* Add media query for smaller screens */
+@media screen and (max-width: 600px) {
+    .slide img {
+        height: auto;
+    }
 }
 
     </style>
@@ -1037,9 +1039,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function showSlides() {
             let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
+           for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+}
+
             slideIndex++;
             if (slideIndex > slides.length) { slideIndex = 1 }
             slides[slideIndex - 1].style.display = "block";
