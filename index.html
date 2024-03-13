@@ -719,7 +719,7 @@ body {
                 </a>
             </div>
             <div class="search-button-mobile">
-                <button onclick="openSearchMobile()"><i class="fas fa-search"></i></button>
+                <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </nav>
@@ -966,6 +966,13 @@ document.addEventListener('DOMContentLoaded', function () {
             slides[slideIndex - 1].style.display = "block";
             setTimeout(showSlides, 3000); // Change image every 5 seconds
         }
+        document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener to the search button for mobile
+    document.getElementById('mobileSearchButton').addEventListener('click', function () {
+        // Redirect the user to search.html
+        window.location.href = 'search.html';
+    });
+});
 </script>
 
 </body>
