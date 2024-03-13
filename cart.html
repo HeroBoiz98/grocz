@@ -1,284 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+    background-color: #ffffff9b;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    }
+
+    .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+
+    .logo a,
+    .search-bar button,
+    .cart a {
+    text-decoration: none;
+    color: #333; /* Dark gray color */
+    transition: color 0.3s ease;
+    }
+
+    .logo a:hover,
+    .search-bar button:hover,
+    .cart a:hover {
+    color: #ff8c00; /* Orange color */
+    }
+
+    .search-bar input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    }
+
+    .search-bar input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase shadow on focus */
+    }
+
+    .search-bar button {
+    padding: 8px 15px;
+    background-color: #ff8c00;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+
+    .search-bar button:hover {
+    background-color: #ffaa4c; /* Lighter orange on hover */
+    }
+
+    .cart a {
+    padding: 0 10px;
+    }
+
+    .search-bar a {
+    text-decoration: none; /* Remove underline */
+    }
+
+    .icon-slider a {
+        text-decoration: none;
+    }
+
+    .company-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px; /* Adjust spacing as needed */
+    }
+    .container {
+      max-width: 90%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    #cartItems {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    #cartItems li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #totalValue {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    #cartControls {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    button.checkout-button {
+      background-color: #007bff;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .item-details {
+      margin-bottom: 10px;
+    }
+
+    .item-price {
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="logo">
-                <a href="index.html">
-                  <span class="company-name">Easy Grocs</span>
-                  <i class="fas fa-home"></i>
-                </a>
-            </div>
-            <div class="search-bar">
-                <a href="search.html">
-                    <input id="search-input" type="text" placeholder="Search...">
-                    <button id="search-button"><i class="fas fa-search"></i></button>
-                </a>
-            </div>
-            <div class="search-button-mobile">
-                <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-    </nav>
-    <nav class="category-navbar">
-        <div class="category-navbar-container">
-          <b><p>Shop By Category</p></b>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-            <a href="masala_product.html">Masala</a>
-            <a href="dairy_products.html">Dairy</a>
-            <a href="electronics.html">Electronics</a>  
-            <a href="soap_and_shampoo_products.html">Soap & Shampoo</a>
-            <a href="cold_drinks_product.html">Cold Drinks</a>
-            <a href="House_Holds_Products.html">House holds</a>
+  <nav class="navbar">
+    <div class="navbar-container">
+        <div class="logo">
+            <a href="index.html">
+            <span class="company-name">Easy Grocs</span>
+            <i class="fas fa-home"></i>
+            </a>
         </div>
-    </nav>
-
+        <div class="search-bar">
+            <a href="search.html">
+                <input id="search-input" type="text" placeholder="Search...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </a>
+        </div>
+        <div class="search-button-mobile">
+            <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</nav>
 <div class="container">
-   
 
-  
+  <h1>Your Shopping Cart</h1>
 
-    <div class="icon-slider">
-        <a href="masala_product.html">
-        <div class="icon">
-            <img src="images/Masala.jpg" alt="Icon 1">
- 
-        </div>
-    </a>
-        <a href="dairy_products.html">
-        <div class="icon">
-            <img src="images/Dairy.jpg" alt="Icon 2">
-      
-        </div>
-    </a>
-        <a href="electronics.html">
-        <div class="icon">
-            <img src="images/Electronics.jpg" alt="Icon 3">
+  <ul id="cartItems">
+    <!-- Cart items will be displayed here dynamically -->
+  </ul>
 
-        </div>
-    </a>
-        <a href="soap_and_shampoo_products.html">
-        <div class="icon">
-            <img src="images/Soap.jpg" alt="Icon 3">
-        </div>
-        </a>
-        <a href="cold_drinks_product.html">
-        <div class="icon">
-            <img src="images/drinks.jpg" alt="Icon 3">
-           
-        </div>
-    </a>  
-    <a href="House_Holds_Products.html">
-        <div class="icon">
-            <img src="images/HouseHolds.jpg" alt="Icon 3">
-           
-        </div>
-    </a>  
-    </div>
-   
-    </div>
-    <div id="productContainer" style="display: none;">
-        <!-- Products will be displayed dynamically here -->
-    </div>
+  <div id="totalValue"></div>
+
+  <div id="cartControls">
+    <button onclick="clearCart()">Clear Cart</button>
+    <button onclick="redirectToCheckout()" class="checkout-button">Checkout</button>
+  </div>
 
 </div>
-
-<a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
-        <div class="slideshow-container">
-            <div class="slide fade">
-                <img src="images/Poster_1.png" alt="Product 1">
-            </div>
-            <!-- <div class="slide fade">
-                <img src="https://via.placeholder.com/1000x1000" alt="Product 2">
-            </div>
-            <div class="slide fade">
-                <img src="https://via.placeholder.com/1000x400" alt="Product 3">
-            </div> -->
-        </div>
-<div id="searchPopup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closeSearch()">&times;</span>
-        <input type="text" id="searchInputPopup" onkeyup="searchProducts()" placeholder="Search for products...">
-        <div id="searchResults"></div>
-    </div>
-</div>
-<div class="interactive-cards">
-    <div class="card">
-        <h2>Dairy Products</h2>
-        <p>EasyGroc</p>
-        <button onclick="redirectToPage('dairy_products.html')">View Details</button>
-    </div>
-    <div class="card">
-        <h2>Cold Drinks</h2>
-        <p>EasyGroc</p>
-        <button onclick="redirectToPage('cold_drinks_product.html')">View Details</button>
-    </div>
-    <div class="card">
-        <h2>House Holds</h2>
-        <p>EasyGroc</p>
-        <button onclick="redirectToPage('House_Holds_Products.html')">View Details</button>
-    </div>
-    <div class="card">
-        <h2>Soap & Shampoo</h2>
-        <p>EasyGroc</p>
-        <button onclick="redirectToPage('soap_and_shampoo_products.html')">View Details</button>
-    </div>
-    <div class="card">
-        <h2>Masala</h2>
-        <p>EasyGroc</p>
-        <button onclick="redirectToPage('masala_product.html')">View Details</button>
-    </div>
-    <div class="card">
-        <h2>Electronics</h2>
-        <p>EasyGroc</p>
-        <button onclick="redirectToPage('electronics.html')">View Details</button>
-    </div>
-<div id="cart_popup"></div>
 
 <script>
-       document.addEventListener('DOMContentLoaded', function () {
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            autoplay: {
-                delay: 5000,
-            },
-        });
-    });
-      function redirectToSearch() {
-        window.location.href = "search.html";
-    }
-    function redirectToPage(nextPage) {
-    window.location.href = nextPage; 
-}
+  // Fetch cart items from storage
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function addToCart(name, price) {
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  function displayCartItems() {
+    let cartItemsList = document.getElementById('cartItems');
+    let totalValueDiv = document.getElementById('totalValue');
 
-        let found = false;
-        cartItems.forEach(item => {
-            if (item.name === name) {
-                item.quantity++;
-                found = true;
-            }
-        });
-
-        if (!found) {
-            cartItems.push({ name: name, price: price, quantity: 1 });
-        }
-
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-
-        // Show pop-up message
-        showCartPopup(name);
-    }
-
-    function showCartPopup(productName) {
-        const cartPopup = document.getElementById('cart_popup');
-        cartPopup.innerText = `${productName} added to cart!`;
-        cartPopup.style.display = 'block';
-
-        setTimeout(() => {
-            cartPopup.style.display = 'none';
-        }, 2000);
-    }
-
-    function openSearch() {
-        document.getElementById('searchPopup').style.display = 'flex';
-    }
-
-    function closeSearch() {
-        document.getElementById('searchPopup').style.display = 'none';
-    }
-
-    function searchProducts() {
-        let input, filter, products, productName, i;
-        input = document.getElementById('searchInputPopup');
-        filter = input.value.toUpperCase();
-        products = document.getElementById('productContainer').getElementsByClassName('product');
-        let searchResults = '';
-
-        for (i = 0; i < products.length; i++) {
-            productName = products[i].getElementsByClassName('product-name')[0];
-            if (productName.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                searchResults += products[i].outerHTML;
-            }
-        }
-
-        document.getElementById('searchResults').innerHTML = searchResults;
-    }
-
-    // Fetch products from product.html and display them
-    window.addEventListener('DOMContentLoaded', () => {
-        fetch('product.html')
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const productDocument = parser.parseFromString(data, 'text/html');
-                const products = productDocument.getElementById('productContainer').innerHTML;
-                document.getElementById('productContainer').innerHTML = products;
-            })
-            
-            .catch(error => console.log('Error fetching products:', error));
-    });
-    function toggleSearchBar() {
-    const searchBar = document.querySelector('.search-bar');
-    if (window.innerWidth <= 768) { // Adjust the breakpoint as needed
-        searchBar.style.display = 'none';
+    if (cartItems.length === 0) {
+      cartItemsList.innerHTML = '<p>Your cart is empty</p>';
+      totalValueDiv.innerHTML = '';
     } else {
-        searchBar.style.display = 'flex';
+      let totalValue = 0;
+      let cartList = '';
+
+      cartItems.forEach((item, index) => {
+        totalValue += item.price * item.quantity; // Calculate total value
+        cartList += `
+          <li>
+            <div class="item-details">
+              <span>${item.name}</span><br>
+              <span class="item-price">Rs.${(item.price * item.quantity).toFixed(2)}</span><br>
+              <span>Quantity: ${item.quantity}</span>
+            </div>
+            <button onclick="removeItem(${index})">Remove</button>
+          </li>`;
+      });
+
+      cartItemsList.innerHTML = cartList;
+      totalValueDiv.innerHTML = `<p>Total: Rs.${totalValue.toFixed(2)}</p>`;
     }
-}
+  }
 
-// Call the function initially to set the initial state
-toggleSearchBar();
+  function removeItem(index) {
+    cartItems.splice(index, 1); // Remove the item from the cart array
+    localStorage.setItem('cart', JSON.stringify(cartItems)); // Update localStorage
+    displayCartItems(); // Refresh cart display
+  }
 
-// Add event listener for window resize to update the visibility of the search bar
-window.addEventListener('resize', toggleSearchBar);
-document.addEventListener('DOMContentLoaded', function () {
-            const swiper = new Swiper('.swiper-container', {
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 5000,
-                },
-            });
-        });
-        let slideIndex = 0;
-        showSlides();
+  function clearCart() {
+    cartItems = []; // Remove all items from the cart array
+    localStorage.setItem('cart', JSON.stringify(cartItems)); // Update localStorage
+    displayCartItems(); // Refresh cart display
+  }
 
-        function showSlides() {
-            let slides = document.getElementsByClassName("slide");
-           for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-}
+  // Redirect to checkout.html
+  function redirectToCheckout() {
+    window.location.href = "checkout.html";
+  }
 
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1 }
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 3000); // Change image every 5 seconds
-        }
-        document.addEventListener('DOMContentLoaded', function () {
+  // Initial display of cart items
+  displayCartItems();
+  document.addEventListener('DOMContentLoaded', function () {
     // Add event listener to the search button for mobile
     document.getElementById('mobileSearchButton').addEventListener('click', function () {
         // Redirect the user to search.html
         window.location.href = 'search.html';
     });
 });
+
 </script>
 
 </body>
