@@ -231,18 +231,555 @@
     margin: 0 10px 20px;
     max-width: 400px;
 }
+.container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+       
+    }
+
+    .search-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input[type=text] {
+        padding: 10px;
+        width: 80%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .icon-slider {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    background-color: transparent; /* Set background color to transparent */
+    text-align: center;
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Color and transparency of scrollbar for Firefox */
+}
+
+.icon-slider::-webkit-scrollbar {
+    width: 3px; /* Thin scrollbar for Chrome, Safari, and Edge */
+}
+
+.icon-slider::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Color of scrollbar thumb for Chrome, Safari, and Edge */
+}
+    .icon {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        margin: 0 10px;
+        border-radius: 20%;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
+    .icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s;
+    }
+
+    .icon:hover {
+        transform: scale(1.1);
+    }
+
+    .icon p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    .icon .text {
+        position: absolute;
+        bottom: -20px; /* Adjust this value as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: #888;
+        white-space: nowrap;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .container {
+            overflow-x: hidden;
+        }
+    }
+    @media screen and (max-width: 600px) {
+    .interactive-cards {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        flex: 0 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+        margin-bottom: 20px;
+    }
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.navbar {
+  background-color: #ffffff9b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo a,
+.search-bar button,
+.cart a {
+  text-decoration: none;
+  color: #333; /* Dark gray color */
+  transition: color 0.3s ease;
+}
+
+.logo a:hover,
+.search-bar button:hover,
+.cart a:hover {
+  color: #ff8c00; /* Orange color */
+}
+
+.search-bar input[type="text"] {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase shadow on focus */
+}
+
+.search-bar button {
+  padding: 8px 15px;
+  background-color: #ff8c00;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #ffaa4c; /* Lighter orange on hover */
+}
+
+.cart a {
+  padding: 0 10px;
+}
+
+.search-bar a {
+  text-decoration: none; /* Remove underline */
+}
+.icon-slider a {
+    text-decoration: none;
+}
+.company-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.navbar {
+  background-color: #ffffff9b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo a,
+.search-bar button,
+.cart a {
+  text-decoration: none;
+  color: #333; /* Dark gray color */
+  transition: color 0.3s ease;
+}
+
+.logo a:hover,
+.search-bar button:hover,
+.cart a:hover {
+  color: #ff8c00; /* Orange color */
+}
+
+.search-bar input[type="text"] {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase shadow on focus */
+}
+
+.search-bar button {
+  padding: 8px 15px;
+  background-color: #ff8c00;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #ffaa4c; /* Lighter orange on hover */
+}
+
+.cart a {
+  padding: 0 10px;
+}
+
+.search-bar a {
+  text-decoration: none; /* Remove underline */
+}
+
+.icon-slider a {
+    text-decoration: none;
+}
+
+.company-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.icon-slider {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    background-color: transparent; /* Set background color to transparent */
+    text-align: center;
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Color and transparency of scrollbar for Firefox */
+}
+
+.icon-slider::-webkit-scrollbar {
+    width: 3px; /* Thin scrollbar for Chrome, Safari, and Edge */
+}
+
+.icon-slider::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Color of scrollbar thumb for Chrome, Safari, and Edge */
+}
+
+.icon {
+    display: inline-block;
+    width: 70px; /* Adjust size of icons */
+    height: 70px; /* Adjust size of icons */
+    margin: 0 10px;
+    border-radius: 50%; /* Make icons circular */
+    overflow: hidden;
+    transition: transform 0.3s;
+    background-color: rgba(255, 255, 255, 0.8); /* Glassy background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for glassy effect */
+}
+
+.icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+.navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
+        }
+
+        .navbar-column {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Adjust spacing */
+        }
+
+        .navbar-column a {
+            margin-right: 10px; /* Adjust spacing */
+            color: #333; /* Dark gray color */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-column a:hover {
+            color: #ff8c00; /* Orange color */
+        }
+
+        /* Media query for mobile devices */
+        @media screen and (max-width: 768px) {
+            .navbar-column {
+                margin-right: 0; /* Remove right margin for better spacing on mobile */
+            }
+        }
+        .category-navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #ffffff9b; /* Same background color as the navbar */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        .category-navbar-container {
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category-navbar a {
+            margin-right: 20px; /* Adjust spacing */
+            color: #333; /* Dark gray color */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .category-navbar a:hover {
+            color: #ff8c00; /* Orange color */
+        }
+
+        /* Media query for mobile devices */
+        @media screen and (max-width: 768px) {
+            .category-navbar {
+                padding: 10px; /* Adjust padding for better spacing on mobile */
+            }
+
+            .category-navbar-container {
+                flex-direction: column; /* Stack items vertically on mobile */
+                align-items: center; /* Center items vertically on mobile */
+            }
+
+            .category-navbar a {
+                margin: 5px 0; /* Adjust margin for better spacing on mobile */
+            }
+        }
+         /* Media query for mobile devices */
+         @media screen and (max-width: 768px) {
+            .search-bar {
+                display: none; /* Hide search bar on mobile */
+            }
+
+            .search-button-mobile {
+                display: flex; /* Display search button on mobile */
+                align-items: center;
+                justify-content: center;
+                padding: 0 10px;
+            }
+
+            .search-button-mobile button {
+                background-color: transparent;
+                border: none;
+                font-size: 18px;
+                color: #333; /* Dark gray color */
+                cursor: pointer;
+                transition: color 0.3s ease;
+            }
+
+            .search-button-mobile button:hover {
+                color: #ff8c00; /* Orange color */
+            }
+        }   
+        @media screen and (min-width: 769px) {
+            .search-button-mobile {
+                display: none; /* Hide search button on desktop */
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .search-button-mobile {
+                display: flex; /* Display search button on mobile */
+                align-items: center;
+                justify-content: center;
+                padding: 0 10px;
+            }
+
+            .search-button-mobile button {
+                background-color: transparent;
+                border: none;
+                font-size: 18px;
+                color: #333; /* Dark gray color */
+                cursor: pointer;
+                transition: color 0.3s ease;
+            }
+
+            .search-button-mobile button:hover {
+                color: #ff8c00; /* Orange color */
+            }
+
+            .interactive-cards {
+                display: none; /* Hide all cards on mobile */
+            }
+        }
+
+        /* Media query for desktop devices */
+        @media screen and (min-width: 769px) {
+            .search-button-mobile {
+                display: none; /* Hide search button on desktop */
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .category-navbar b {
+                display: none; /* Hide the "Shop By Category" text on desktop */
+            }
+        }
+        .icon {
+    display: inline-block;
+    width: 50px; /* Decreased width */
+    height: 50px; /* Decreased height */
+    margin: 0 5px; /* Adjusted margin */
+    border-radius: 50%; /* Make icons circular */
+    overflow: hidden;
+    transition: transform 0.3s;
+    background-color: rgba(255, 255, 255, 0.8); /* Glassy background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for glassy effect */
+}
+.icon-slider {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    background-color: transparent; /* Set background color to transparent */
+    text-align: center;
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Color and transparency of scrollbar for Firefox */
+    margin-bottom: 10px; /* Added margin bottom for spacing */
+}
+.slideshow-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slide {
+        margin: 0 10px; /* Adjust margin as needed */
+    }
 
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="index.html">
+                  <span class="company-name">Easy Grocs</span>
+                  <i class="fas fa-home"></i>
+                </a>
+            </div>
+            <div class="search-bar">
+                <a href="search.html">
+                    <input id="search-input" type="text" placeholder="Search...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </a>
+            </div>
+            <div class="search-button-mobile">
+                <button onclick="openSearchMobile()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+    <nav class="category-navbar">
+        <div class="category-navbar-container">
+          <b><p>Shop By Category</p></b>
+
+            <a href="masala_product.html">Masala</a>
+            <a href="dairy_products.html">Dairy</a>
+            <a href="electronics.html">Electronics</a>  
+            <a href="soap_and_shampoo_products.html">Soap & Shampoo</a>
+            <a href="cold_drinks_product.html">Cold Drinks</a>
+            <a href="House_Holds_Products.html">House holds</a>
+        </div>
+    </nav>
 
 <div class="container">
-    <h1>Grocz</h1>
+   
 
-    <div class="search-container">
-        <input type="text" id="searchInput" onclick="openSearch()" placeholder="Search for products...">
+  
+
+    <div class="icon-slider">
+        <a href="masala_product.html">
+        <div class="icon">
+            <img src="images/Masala.jpg" alt="Icon 1">
+ 
+        </div>
+    </a>
+        <a href="dairy_products.html">
+        <div class="icon">
+            <img src="images/Dairy.jpg" alt="Icon 2">
+      
+        </div>
+    </a>
+        <a href="electronics.html">
+        <div class="icon">
+            <img src="images/Electronics.jpg" alt="Icon 3">
+
+        </div>
+    </a>
+        <a href="soap_and_shampoo_products.html">
+        <div class="icon">
+            <img src="images/Soap.jpg" alt="Icon 3">
+        </div>
+        </a>
+        <a href="cold_drinks_product.html">
+        <div class="icon">
+            <img src="images/drinks.jpg" alt="Icon 3">
+           
+        </div>
+    </a>  
+    <a href="House_Holds_Products.html">
+        <div class="icon">
+            <img src="images/HouseHolds.jpg" alt="Icon 3">
+           
+        </div>
+    </a>  
     </div>
-
+   
+    </div>
     <div id="productContainer" style="display: none;">
         <!-- Products will be displayed dynamically here -->
     </div>
@@ -250,7 +787,17 @@
 </div>
 
 <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
-
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="https://via.placeholder.com/1000x400" alt="Product 1">
+            </div>
+            <div class="slide fade">
+                <img src="https://via.placeholder.com/1000x400" alt="Product 2">
+            </div>
+            <div class="slide fade">
+                <img src="https://via.placeholder.com/1000x400" alt="Product 3">
+            </div>
+        </div>
 <div id="searchPopup" class="popup">
     <div class="popup-content">
         <span class="close" onclick="closeSearch()">&times;</span>
@@ -262,7 +809,7 @@
     <div class="card">
         <h2>Dairy Products</h2>
         <p>EasyGroc</p>
-        <button onclick="redirectToPage('dairy_pro')">View Details</button>
+        <button onclick="redirectToPage('dairy_products.html')">View Details</button>
     </div>
     <div class="card">
         <h2>Cold Drinks</h2>
@@ -278,14 +825,35 @@
         <h2>Soap & Shampoo</h2>
         <p>EasyGroc</p>
         <button onclick="redirectToPage('soap_and_shampoo_products.html')">View Details</button>
-    </div><div class="card">
+    </div>
+    <div class="card">
         <h2>Masala</h2>
         <p>EasyGroc</p>
         <button onclick="redirectToPage('masala_product.html')">View Details</button>
     </div>
+    <div class="card">
+        <h2>Electronics</h2>
+        <p>EasyGroc</p>
+        <button onclick="redirectToPage('electronics.html')">View Details</button>
+    </div>
 <div id="cart_popup"></div>
 
 <script>
+       document.addEventListener('DOMContentLoaded', function () {
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 5000,
+            },
+        });
+    });
+      function redirectToSearch() {
+        window.location.href = "search.html";
+    }
     function redirectToPage(nextPage) {
     window.location.href = nextPage; 
 }
@@ -359,6 +927,45 @@
             
             .catch(error => console.log('Error fetching products:', error));
     });
+    function toggleSearchBar() {
+    const searchBar = document.querySelector('.search-bar');
+    if (window.innerWidth <= 768) { // Adjust the breakpoint as needed
+        searchBar.style.display = 'none';
+    } else {
+        searchBar.style.display = 'flex';
+    }
+}
+
+// Call the function initially to set the initial state
+toggleSearchBar();
+
+// Add event listener for window resize to update the visibility of the search bar
+window.addEventListener('resize', toggleSearchBar);
+document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 5000,
+                },
+            });
+        });
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000); // Change image every 5 seconds
+        }
 </script>
 
 </body>
