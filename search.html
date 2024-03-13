@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
-    <style>
+   <link rel="stylesheet" href="style.css">
+   <style>
         body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -164,7 +165,15 @@ h1 {
     </style>
 </head>
 <body>
-
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="index.html">
+                  <span class="company-name">Easy Grocs</span>
+                  <i class="fas fa-home"></i>
+                </a>
+            </div>
+    </nav>
 <div class="container">
     <h1>Search Results</h1>
 
@@ -249,6 +258,14 @@ h1 {
         const shuffled = [...products].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
     }
+    document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener to the search button for mobile
+    document.getElementById('mobileSearchButton').addEventListener('click', function () {
+        // Redirect the user to search.html
+        window.location.href = 'search.html';
+    });
+});
+
 </script>
 
 </body>
