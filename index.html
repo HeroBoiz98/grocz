@@ -700,6 +700,44 @@ body {
     .slide {
         margin: 0 10px; /* Adjust margin as needed */
     }
+    @media screen and (max-width: 768px) {
+    .search-bar {
+        display: none; /* Hide search bar on mobile */
+    }
+
+    .search-button-mobile {
+        display: flex; /* Display search button on mobile */
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+    }
+
+    .search-button-mobile button {
+        background-color: transparent;
+        border: none;
+        font-size: 18px;
+        color: #333; /* Dark gray color */
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .search-button-mobile button:hover {
+        color: #ff8c00; /* Orange color */
+    }
+
+    /* Show the cards on mobile */
+    .interactive-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        flex: 0 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+        margin-bottom: 20px;
+    }
+}
 
     </style>
 </head>
