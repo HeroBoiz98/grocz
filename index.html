@@ -738,6 +738,47 @@ body {
         margin-bottom: 20px;
     }
 }
+.slideshow-container {
+    width: 600px; /* Set the width of the carousel */
+    height: 300px; /* Set the height of the carousel */
+    overflow: hidden; /* Hide overflowing content */
+    position: relative; /* Add position relative for absolute positioning of slides */
+}
+
+.slide {
+    width: 100%; /* Set the width of the slides to fill the carousel */
+    height: 100%; /* Set the height of the slides to fill the carousel */
+    position: absolute; /* Position slides absolutely */
+    top: 0; /* Position slide to the top of the carousel */
+    left: 0; /* Position slide to the left of the carousel */
+}
+
+.slide img {
+    width: 100%; /* Set the width of the image to fill the slide */
+    height: 100%; /* Set the height of the image to fill the slide */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire slide */
+}
+.slideshow-container {
+    width: 600px; /* Set the width of the carousel */
+    height: 300px; /* Set the height of the carousel */
+    overflow: hidden; /* Hide overflowing content */
+    position: relative; /* Add position relative for absolute positioning of slides */
+    margin: 0 auto; /* Center the carousel horizontally */
+}
+
+.slide {
+    width: 100%; /* Set the width of the slides to fill the carousel */
+    height: 100%; /* Set the height of the slides to fill the carousel */
+    position: absolute; /* Position slides absolutely */
+    top: 0; /* Position slide to the top of the carousel */
+    left: 0; /* Position slide to the left of the carousel */
+}
+
+.slide img {
+    width: 100%; /* Set the width of the image to fill the slide */
+    height: 100%; /* Set the height of the image to fill the slide */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire slide */
+}
 
     </style>
 </head>
@@ -756,9 +797,9 @@ body {
                     <button id="search-button"><i class="fas fa-search"></i></button>
                 </a>
             </div>
-            <div class="search-button-mobile">
+            <!-- <div class="search-button-mobile">
                 <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
-            </div>
+            </div> -->
         </div>
     </nav>
     <nav class="category-navbar">
@@ -827,14 +868,14 @@ body {
 <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
         <div class="slideshow-container">
             <div class="slide fade">
-                <img src="https://via.placeholder.com/1000x400" alt="Product 1">
+                <img src="images/Poster_1.png" alt="Product 1">
             </div>
-            <div class="slide fade">
-                <img src="https://via.placeholder.com/1000x400" alt="Product 2">
+            <!-- <div class="slide fade">
+                <img src="https://via.placeholder.com/1000x1000" alt="Product 2">
             </div>
             <div class="slide fade">
                 <img src="https://via.placeholder.com/1000x400" alt="Product 3">
-            </div>
+            </div> -->
         </div>
 <div id="searchPopup" class="popup">
     <div class="popup-content">
