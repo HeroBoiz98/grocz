@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everest Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="index.html">
+                  <span class="company-name">Easy Grocs</span>
+                  <i class="fas fa-home"></i>
+                </a>
+            </div>
+            <div class="search-bar">
+                <a href="search.html">
+                    <input id="search-input" type="text" placeholder="Search...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </a>
+            </div>
+            <div class="search-button-mobile">
+                <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Everest Products</h1>
+
+        <!-- Container for products with brand="Everest" -->
+        <div id="everestProducts" style="display: flex; flex-wrap: wrap;">
+            <!-- Product cards with brand="Everest" will be dynamically added here -->
+        </div>
+    </div>
+
+    <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listener to the search button for mobile
+            document.getElementById('mobileSearchButton').addEventListener('click', function () {
+                // Redirect the user to search.html
+                window.location.href = 'search.html';
+            });
+
+            fetchEverestProducts();
+        });
+
+        function fetchEverestProducts() {
+            fetch('product.html') // Change the file name to your actual file containing products
+                .then(response => response.text())
+                .then(data => {
+                    const doc = new DOMParser().parseFromString(data, 'text/html');
+                    const everestProducts = Array.from(doc.querySelectorAll('.product[data-brand="Everest"]'));
+                    const everestProductsHTML = everestProducts.map(product => product.outerHTML).join('');
+                    document.getElementById('everestProducts').innerHTML = everestProductsHTML;
+                })
+                .catch(error => console.error('Error fetching Everest products:', error));
+        }
+
+        function addToCart(name, price) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            let found = false;
+            cartItems.forEach(item => {
+                if (item.name === name) {
+                    item.quantity++;
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                cartItems.push({ name: name, price: price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            // Show pop-up message
+            showCartPopup(name);
+        }
+
+        function showCartPopup(productName) {
+            const cartPopup = document.getElementById('cart_popup');
+            cartPopup.innerText = `${productName} added to cart!`;
+            cartPopup.style.display = 'block';
+
+            setTimeout(() => {
+                cartPopup.style.display = 'none';
+            }, 2000);
+        }
+
+        function openSearch() {
+            document.getElementById('searchPopup').style.display = 'flex';
+        }
+
+        function closeSearch() {
+            document.getElementById('searchPopup').style.display = 'none';
+        }
+    </script>
+    <div id="cart_popup"></div>
+</body>
+</html>
