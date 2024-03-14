@@ -30,9 +30,16 @@
     <div class="container">
         <h1>Snack Products</h1>
 
-        <div id="snackProducts" style="display: flex; flex-wrap: wrap;">
-            <!-- Product cards will be dynamically added here -->
+        <!-- Container for products with wafer_brand="balaji" -->
+        <div id="balajiProductsContainer">
+            <h2>Balaji</h2>
+            <div id="balajiProducts" style="display: flex; flex-wrap: wrap;">
+                <!-- Product cards with wafer_brand="balaji" will be dynamically added here -->
+            </div>
         </div>
+
+        <!-- Container for other snack products -->
+        
     </div>
 
     <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
@@ -52,10 +59,21 @@
                 .then(data => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
-                    const snackProductsContainer = doc.getElementById('productContainer');
-                    const snackProducts = Array.from(snackProductsContainer.getElementsByClassName('product')).filter(product => product.getAttribute('data-category') === 'snack');
-                    const snackProductsHTML = snackProducts.map(product => product.outerHTML).join('');
-                    document.getElementById('snackProducts').innerHTML = snackProductsHTML;
+                    const snackProducts = Array.from(doc.getElementsByClassName('product'));
+                    const balajiProducts = [];
+                    const otherSnackProducts = [];
+
+                    snackProducts.forEach(product => {
+                        const waferBrand = product.getAttribute('wafer_brand');
+                        if (waferBrand === 'balaji') {
+                            balajiProducts.push(product.outerHTML);
+                        } else {
+                            otherSnackProducts.push(product.outerHTML);
+                        }
+                    });
+
+                    document.getElementById('balajiProducts').innerHTML = balajiProducts.join('');
+                    document.getElementById('snackProducts').innerHTML = otherSnackProducts.join('');
                 })
                 .catch(error => console.error('Error fetching snack products:', error));
         }
