@@ -4,6 +4,43 @@
         padding: 0;
         background-color: #f7f7f7;
     }
+/* Add this CSS to your existing style.css file */
+
+/* Brand section */
+.brand-section {
+    padding: 20px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.brand-section h2 {
+    margin-bottom: 20px;
+}
+
+/* Brand logos */
+.brand-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.brand-logos a {
+    display: inline-block;
+    margin: 10px;
+}
+
+.brand-logos img {
+    width: 100px; /* Adjust the size as needed */
+    height: auto;
+    border-radius: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.brand-logos img:hover {
+    transform: scale(1.05); /* Enlarge on hover */
+}
 
     .container {
         max-width: 800px;
