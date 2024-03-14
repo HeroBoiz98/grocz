@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soap & Shampoo</title>
+    <title>Health Products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Additional CSS for enhanced headings */
+        .section-heading {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -30,9 +42,34 @@
     <div class="container">
         <h1>Health Products</h1>
 
-        <div id="healthProducts" style="display: flex; flex-wrap: wrap;">
-            <!-- Product cards will be dynamically added here -->
+        <div id="soapProductsContainer">
+            <h2 class="section-heading">Soap Bars</h2>
+            <div id="soapProducts" style="display: flex; flex-wrap: wrap;">
+                <!-- Soap bar product cards will be dynamically added here -->
+            </div>
         </div>
+
+        <div id="shampooProductsContainer">
+            <h2 class="section-heading">Shampoo Sachets</h2>
+            <div id="shampooProducts" style="display: flex; flex-wrap: wrap;">
+                <!-- Shampoo sachet product cards will be dynamically added here -->
+            </div>
+        </div>
+
+        <div id="clothSoapProductsContainer">
+            <h2 class="section-heading">Cloth Washing Soap Bars</h2>
+            <div id="clothSoapProducts" style="display: flex; flex-wrap: wrap;">
+                <!-- Cloth washing soap bar product cards will be dynamically added here -->
+            </div>
+        </div>
+
+        <div id="utensilSoapProductsContainer">
+            <h2 class="section-heading">Utensil Soap Bars</h2>
+            <div id="utensilSoapProducts" style="display: flex; flex-wrap: wrap;">
+                <!-- Utensil soap bar product cards will be dynamically added here -->
+            </div>
+        </div>
+
     </div>
 
     <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
@@ -52,10 +89,34 @@
                 .then(data => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
-                    const healthProductsContainer = doc.getElementById('productContainer');
-                    const healthProducts = Array.from(healthProductsContainer.getElementsByClassName('product')).filter(product => product.getAttribute('data-category') === 'health');
-                    const healthProductsHTML = healthProducts.map(product => product.outerHTML).join('');
-                    document.getElementById('healthProducts').innerHTML = healthProductsHTML;
+                    const products = Array.from(doc.getElementsByClassName('product'));
+                    
+                    // Containers for different types of health products
+                    const soapProductsContainer = document.getElementById('soapProducts');
+                    const shampooProductsContainer = document.getElementById('shampooProducts');
+                    const clothSoapProductsContainer = document.getElementById('clothSoapProducts');
+                    const utensilSoapProductsContainer = document.getElementById('utensilSoapProducts');
+
+                    // Filter products based on their types and append them to respective containers
+                    products.forEach(product => {
+                        const type = product.getAttribute('type');
+                        switch (type) {
+                            case 'soap_bar':
+                                soapProductsContainer.innerHTML += product.outerHTML;
+                                break;
+                            case 'shampoo_sachet':
+                                shampooProductsContainer.innerHTML += product.outerHTML;
+                                break;
+                            case 'cloth_soap_bar':
+                                clothSoapProductsContainer.innerHTML += product.outerHTML;
+                                break;
+                            case 'utensil_soap_bar':
+                                utensilSoapProductsContainer.innerHTML += product.outerHTML;
+                                break;
+                            default:
+                                break;
+                        }
+                    });
                 })
                 .catch(error => console.error('Error fetching health products:', error));
         }
