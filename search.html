@@ -162,6 +162,39 @@ h1 {
             display: none;
             z-index: 9999;
         }
+
+        /* CSS for mobile devices */
+@media only screen and (max-width: 600px) {
+    .product-container {
+        justify-content: center; /* Center products on small screens */
+    }
+
+    .product {
+        width: 120px; /* Adjust the width of the product card for mobile */
+        height: 180px; /* Adjust the height of the product card for mobile */
+    }
+
+    .product img {
+        width: 60px; /* Adjust the width of product images for mobile */
+        height: 60px; /* Adjust the height of product images for mobile */
+        margin-bottom: 5px; /* Adjust the margin for better spacing */
+    }
+
+    .product-name {
+        font-size: 10px; /* Adjust the font size of the product name for mobile */
+    }
+
+    .product-price {
+        font-size: 8px; /* Adjust the font size of the product price for mobile */
+        margin-bottom: 5px; /* Adjust the margin for better spacing */
+    }
+
+    .product button {
+        padding: 4px 8px; /* Adjust the padding of the button for mobile */
+        font-size: 8px; /* Adjust the font size of the button for mobile */
+    }
+}
+
     </style>
 </head>
 <body>
