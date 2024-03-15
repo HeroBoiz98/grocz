@@ -1291,3 +1291,51 @@ body {
 .interactive-cards .card:hover {
     transform: scale(1.05);
 }
+/* Add CSS styles for interactive cards */
+.interactive-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(90% - 20px);
+        max-width: calc(90% - 20px);
+    }
+}
+/* CSS for the cart button */
+.cart-button {
+    position: fixed;
+    bottom: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    z-index: 9999; /* Ensure the cart button is on top */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+/* Hover effect for the cart button */
+.cart-button:hover {
+    background-color: #0056b3;
+}
