@@ -6,6 +6,14 @@
     <title>Snack Products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Additional CSS for enhanced headings */
+        h1, h2 {
+            text-align: center;
+            font-family: Arial, sans-serif; /* Use any preferred font family */
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -30,16 +38,22 @@
     <div class="container">
         <h1>Snack Products</h1>
 
-        <!-- Container for products with wafer_brand="balaji" -->
-        <div id="balajiProductsContainer">
-            <h2>Balaji</h2>
-            <div id="balajiProducts" style="display: flex; flex-wrap: wrap;">
-                <!-- Product cards with wafer_brand="balaji" will be dynamically added here -->
+        <!-- Container for products with data-category="snack" -->
+        <div id="snackProductsContainer">
+            <h2>Snack Products</h2>
+            <div id="snackProducts" style="display: flex; flex-wrap: wrap;">
+                <!-- Product cards with data-category="snack" will be dynamically added here -->
             </div>
         </div>
 
-        <!-- Container for other snack products -->
-        
+        <!-- Container for products with snack_type="biscuit" -->
+        <div id="cookiesContainer">
+            <h2>Cookies</h2>
+            <div id="cookiesProducts" style="display: flex; flex-wrap: wrap;">
+                <!-- Product cards with snack_type="biscuit" will be dynamically added here -->
+            </div>
+        </div>
+
     </div>
 
     <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
@@ -59,21 +73,14 @@
                 .then(data => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
-                    const snackProducts = Array.from(doc.getElementsByClassName('product'));
-                    const balajiProducts = [];
-                    const otherSnackProducts = [];
+                    const snackProducts = Array.from(doc.querySelectorAll('[data-category="snack"]'));
+                    const cookiesProducts = Array.from(doc.querySelectorAll('[snack_type="biscuit"]'));
 
-                    snackProducts.forEach(product => {
-                        const waferBrand = product.getAttribute('wafer_brand');
-                        if (waferBrand === 'balaji') {
-                            balajiProducts.push(product.outerHTML);
-                        } else {
-                            otherSnackProducts.push(product.outerHTML);
-                        }
-                    });
+                    const snackProductsHTML = snackProducts.map(product => product.outerHTML).join('');
+                    const cookiesProductsHTML = cookiesProducts.map(product => product.outerHTML).join('');
 
-                    document.getElementById('balajiProducts').innerHTML = balajiProducts.join('');
-                    document.getElementById('snackProducts').innerHTML = otherSnackProducts.join('');
+                    document.getElementById('snackProducts').innerHTML = snackProductsHTML;
+                    document.getElementById('cookiesProducts').innerHTML = cookiesProductsHTML;
                 })
                 .catch(error => console.error('Error fetching snack products:', error));
         }
