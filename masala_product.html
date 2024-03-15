@@ -574,6 +574,29 @@
         background-color: rgba(255, 255, 255, 0.8); /* Glassy background */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for glassy effect */
     }
+    .product {
+    margin-bottom: 20px; /* Add margin to create space between cards */
+    /* Other styles remain unchanged */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+    .product {
+        width: 100%; /* Ensure full width for product cards on smaller screens */
+        margin-right: 0; /* Remove right margin to fit cards properly */
+    }
+}
+
+    
     </style>
 </head>
 <body>
