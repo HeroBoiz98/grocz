@@ -1339,3 +1339,34 @@ body {
 .cart-button:hover {
     background-color: #0056b3;
 }
+/* Hide mobile navigation by default */
+.category-navbar.mobile {
+    display: none;
+}
+
+/* Hide desktop navigation by default */
+.category-navbar.desktop {
+    display: block;
+}
+
+/* Media query for desktop view */
+@media (min-width: 768px) {
+    .category-navbar.mobile {
+        display: block;
+    }
+
+    .category-navbar.desktop {
+        display: none;
+    }
+}
+.category-navbar.mobile .category-navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Adjust padding as needed */
+}
+
+.category-navbar.mobile .category-navbar-container a {
+    text-decoration: none;
+    color: black; /* Change color as needed */
+}
