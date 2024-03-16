@@ -6,7 +6,57 @@
     <link rel="icon" type="image/x-icon" href="/images/Logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
-    
+    <style>
+         .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            z-index: 1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f9f9f9;
+        }
+
+        .show {
+            display: block;
+        }
+        .category-navbar.mobile .category-navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Adjust padding as needed */
+}
+
+.category-navbar.mobile .category-navbar-container a {
+    text-decoration: none;
+    color: black; /* Change color as needed */
+}
+
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
 <link rel="stylesheet" href="style.css">
 </head>
@@ -30,10 +80,26 @@
             </div>
         </div>
     </nav>
-    <nav class="category-navbar">
+    <nav class="category-navbar desktop">
         <div class="category-navbar-container">
-          <b><p>Shop By Category</p></b>
-
+            <div class="dropdown">
+                <button class="dropbtn">Shop By Category <i class="fas fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="masala_product.html">Masala / Spices</a>
+                    <a href="snacks.html">Snacks</a>
+                    <a href="dairy_products.html">Dairy</a>
+                    <a href="electronics.html">Electronics</a>  
+                    <a href="soap_and_shampoo_products.html">Soap & Shampoo</a>
+                    <a href="cold_drinks_product.html">Cold Drinks</a>
+                    <a href="House_Holds_Products.html">House holds</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <nav class="category-navbar mobile">
+        <div class="category-navbar-container">
+            <b><p>Shop By Category</p></b>
             <a href="masala_product.html">Masala / Spices</a>
             <a href="snacks.html">Snacks </a>
             <a href="dairy_products.html">Dairy</a>
@@ -43,7 +109,7 @@
             <a href="House_Holds_Products.html">House holds</a>
         </div>
     </nav>
-
+    
 <div class="container">
    
 
@@ -178,7 +244,6 @@
     </div>
     
 <div id="cart_popup"></div>
-
 
 <script>
        document.addEventListener('DOMContentLoaded', function () {
@@ -316,6 +381,27 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'search.html';
     });
 });
+   // Add this JavaScript to toggle the dropdown
+   document.addEventListener('DOMContentLoaded', function () {
+            const dropbtn = document.querySelector('.dropbtn');
+            const dropdownContent = document.querySelector('.dropdown-content');
+
+            // Function to toggle the dropdown
+            function toggleDropdown() {
+                dropdownContent.classList.toggle('show');
+            }
+
+            dropbtn.addEventListener('click', toggleDropdown);
+
+            // Close the dropdown if the user clicks outside of it
+            window.addEventListener('click', function (event) {
+                if (!event.target.matches('.dropbtn')) {
+                    if (dropdownContent.classList.contains('show')) {
+                        dropdownContent.classList.remove('show');
+                    }
+                }
+            });
+        });
 </script>
 
 </body>
