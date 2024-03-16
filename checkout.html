@@ -79,17 +79,51 @@
   // Display cart details in the placeholder
   document.getElementById('cartItems').setAttribute('placeholder', cartDetails);
 
+  // Populate billing information if available in local storage
+  let savedBillingInfo = JSON.parse(localStorage.getItem('billingInfo'));
+  if (savedBillingInfo) {
+    document.getElementById('fullname').value = savedBillingInfo.fullname;
+    document.getElementById('email').value = savedBillingInfo.email;
+    document.getElementById('phone').value = savedBillingInfo.phone;
+  }
+
+  // Populate shipping information if available in local storage
+  let savedShippingAddress = JSON.parse(localStorage.getItem('shippingAddress'));
+  if (savedShippingAddress) {
+    document.getElementById('address').value = savedShippingAddress.address;
+    document.getElementById('city').value = savedShippingAddress.city;
+    document.getElementById('zip').value = savedShippingAddress.zip;
+  }
+
   // Submit form event handler
   document.querySelector('#checkoutForm').addEventListener('submit', function(e) {
     // Validate phone number, name, and address fields
     let phone = document.getElementById('phone').value;
     let fullname = document.getElementById('fullname').value;
     let address = document.getElementById('address').value;
+    let city = document.getElementById('city').value;
+    let zip = document.getElementById('zip').value;
 
-    if (!phone || !fullname || !address) {
-      alert("Please fill in all required fields: Phone Number, Full Name, and Address.");
+    if (!phone || !fullname || !address || !city || !zip) {
+      alert("Please fill in all required fields: Phone Number, Full Name, Address, City, and ZIP Code.");
       e.preventDefault(); // Prevent form submission
     } else {
+      // Save billing information to local storage
+      let billingInfo = {
+        fullname: fullname,
+        email: document.getElementById('email').value,
+        phone: phone
+      };
+      localStorage.setItem('billingInfo', JSON.stringify(billingInfo));
+
+      // Save shipping information to local storage
+      let shippingAddress = {
+        address: address,
+        city: city,
+        zip: zip
+      };
+      localStorage.setItem('shippingAddress', JSON.stringify(shippingAddress));
+
       // Construct message body including cart items
       let messageBody = `Billing Information:\n`;
       messageBody += `Full Name: ${fullname}\n`;
@@ -98,8 +132,8 @@
 
       messageBody += `Shipping Information:\n`;
       messageBody += `Address: ${address}\n`;
-      messageBody += `City: ${document.getElementById('city').value}\n`;
-      messageBody += `ZIP Code: ${document.getElementById('zip').value}\n\n`;
+      messageBody += `City: ${city}\n`;
+      messageBody += `ZIP Code: ${zip}\n\n`;
 
       messageBody += `Cart Items:\n`;
       cartItems.forEach(item => {
