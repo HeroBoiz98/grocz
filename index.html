@@ -55,7 +55,65 @@
     text-decoration: none;
     color: black; /* Change color as needed */
 }
+.carousel {
+            width: 100%; /* Default width for mobile */
+            overflow: hidden;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Media query for desktop */
+        @media screen and (min-width: 768px) {
+            .carousel img.mobile-image {
+                display: none; /* Hide mobile poster in desktop */
+            }
+            .carousel img.desktop-image {
+                display: block;
+                margin: 0 auto; /* Center the image */
+                width: 80%; /* Make the image fill 80% of the carousel */
+                max-width: 100%;
+            }
+        }
 
+        /* Media query for mobile */
+        @media screen and (max-width: 767px) {
+            .carousel img.desktop-image {
+                display: none; /* Hide desktop poster in mobile */
+            }
+        }
+        .carousel {
+            width: 100%; /* Default width for mobile */
+            overflow: hidden;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Media query for desktop */
+        @media screen and (min-width: 768px) {
+            .carousel img.mobile-image {
+                display: none; /* Hide mobile poster in desktop */
+            }
+            .carousel img.desktop-image {
+                display: block;
+                margin: 0 auto; /* Center the image */
+                width: 80%; /* Make the image fill 80% of the carousel */
+                max-width: 100%;
+            }
+            .carousel img.desktop-poster {
+                display: none; /* Hide Poster_1.png in desktop */
+            }
+        }
+
+        /* Media query for mobile */
+        @media screen and (max-width: 767px) {
+            .carousel img.desktop-image {
+                display: none; /* Hide desktop poster in mobile */
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
 <link rel="stylesheet" href="style.css">
@@ -168,10 +226,10 @@
 </div>
 
 <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
-        <div class="slideshow-container">
-            <div class="slide fade">
+        <!-- <div class="slideshow-container"> -->
+            <!-- <div class="slide fade">
                 <img src="images/Poster_1.png" alt="Product 1">
-            </div>
+            </div> -->
             <!-- <div class="slide fade">
                 <img src="https://via.placeholder.com/1000x1000" alt="Product 2">
             </div>
@@ -179,7 +237,11 @@
                 <img src="https://via.placeholder.com/1000x400" alt="Product 3">
             </div> -->
         </div>
-        <!-- After the carousel -->
+        <div class="carousel">
+            <img class="mobile-image" src="images/Poster_1.png" alt="Mobile Poster 1">
+            <!-- Additional image for desktop -->
+            <img class="desktop-image" src="images/Desktop_Poster_1.png" alt="Desktop Poster 1">
+        </div>
 <div class="brand-section">
     <h2>Shop Now</h2>
     <div class="brand-logos">
