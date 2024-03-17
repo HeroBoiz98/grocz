@@ -3,859 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Masala Products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-        }
-
+        /* Additional styling for brand headings */
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            text-align: center; /* Center align the headings */
         }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .search-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .search-container input[type=text] {
-            padding: 10px;
-            width: 80%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .product {
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            padding: 10px;
-            width: 250px;
-            height: 240px;
-            margin-right: 10px;
+        
+        .brand-heading {
+            font-size: 1.5rem;
+            margin-top: 20px;
             margin-bottom: 10px;
         }
 
-        .product img {
-            width: 80px;
-            height: 100px;
-            border-radius: 10%;
-            margin-bottom: 10px;
+        /* Mobile-friendly adjustments */
+        @media screen and (max-width: 768px) {
+            .brand-heading {
+                font-size: 2.2rem; /* Adjust font size for smaller screens */
+            }
+
+            #everestProducts,
+            #ramdevProducts,
+            #rajeshProducts {
+                display: block; /* Change the display to block for better stacking */
+                margin: 0 auto; /* Center align the products */
+            }
+
+            #everestProducts .product,
+            #ramdevProducts .product,
+            #rajeshProducts .product {
+                width: 90%; /* Adjust the width of products for better fit */
+                margin-bottom: 20px; /* Add margin between products */
+            }
         }
-
-        .product-details {
-            text-align: center;
-            padding: 0 10px;
-        }
-
-        .product-name {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-        .navbar {
-    background-color: #ffffff9b;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    }
-
-    .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    }
-
-    .logo a,
-    .search-bar button,
-    .cart a {
-    text-decoration: none;
-    color: #333; /* Dark gray color */
-    transition: color 0.3s ease;
-    }
-
-    .logo a:hover,
-    .search-bar button:hover,
-    .cart a:hover {
-    color: #ff8c00; /* Orange color */
-    }
-
-    .search-bar input[type="text"] {
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    }
-
-    .search-bar input[type="text"]:focus {
-    outline: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase shadow on focus */
-    }
-
-    .search-bar button {
-    padding: 8px 15px;
-    background-color: #ff8c00;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    }
-
-    .search-bar button:hover {
-    background-color: #ffaa4c; /* Lighter orange on hover */
-    }
-
-    .cart a {
-    padding: 0 10px;
-    }
-
-    .search-bar a {
-    text-decoration: none; /* Remove underline */
-    }
-
-        .product button {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 6px 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 12px;
-        }
-
-        .product button:hover {
-            background-color: #45a049;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 80%;
-            max-height: 80%;
-            overflow-y: auto;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .cart-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #cart_popup {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: rgba(0, 128, 0, 0.8);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: none;
-            z-index: 9999;
-        }
-        .navbar {
-    background-color: #ffffff9b;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    }
-
-    .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    }
-
-    .logo a,
-    .search-bar button,
-    .cart a {
-    text-decoration: none;
-    color: #333; /* Dark gray color */
-    transition: color 0.3s ease;
-    }
-
-    .logo a:hover,
-    .search-bar button:hover,
-    .cart a:hover {
-    color: #ff8c00; /* Orange color */
-    }
-
-    .search-bar input[type="text"] {
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    }
-
-    .search-bar input[type="text"]:focus {
-    outline: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase shadow on focus */
-    }
-
-    .search-bar button {
-    padding: 8px 15px;
-    background-color: #ff8c00;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    }
-
-    .search-bar button:hover {
-    background-color: #ffaa4c; /* Lighter orange on hover */
-    }
-
-    .cart a {
-    padding: 0 10px;
-    }
-
-    .search-bar a {
-    text-decoration: none; /* Remove underline */
-    }
-    .icon-slider a {
-        text-decoration: none;
-    }
-    .company-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 10px; /* Adjust spacing as needed */
-    }
-    body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa; /* Light background color */
-    }
-
-    .navbar {
-    background-color: #ffffff9b;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    }
-
-    .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    }
-
-    .logo a,
-    .search-bar button,
-    .cart a {
-    text-decoration: none;
-    color: #333; /* Dark gray color */
-    transition: color 0.3s ease;
-    }
-
-    .logo a:hover,
-    .search-bar button:hover,
-    .cart a:hover {
-    color: #ff8c00; /* Orange color */
-    }
-
-    .search-bar input[type="text"] {
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    }
-
-    .search-bar input[type="text"]:focus {
-    outline: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase shadow on focus */
-    }
-
-    .search-bar button {
-    padding: 8px 15px;
-    background-color: #ff8c00;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    }
-
-    .search-bar button:hover {
-    background-color: #ffaa4c; /* Lighter orange on hover */
-    }
-
-    .cart a {
-    padding: 0 10px;
-    }
-
-    .search-bar a {
-    text-decoration: none; /* Remove underline */
-    }
-
-    .icon-slider a {
-        text-decoration: none;
-    }
-
-    .company-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 10px; /* Adjust spacing as needed */
-    }
-
-    .icon-slider {
-        overflow-x: auto;
-        white-space: nowrap;
-        padding: 10px;
-        background-color: transparent; /* Set background color to transparent */
-        text-align: center;
-        scrollbar-width: thin; /* Thin scrollbar for Firefox */
-        scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Color and transparency of scrollbar for Firefox */
-    }
-
-    .icon-slider::-webkit-scrollbar {
-        width: 3px; /* Thin scrollbar for Chrome, Safari, and Edge */
-    }
-
-    .icon-slider::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.2); /* Color of scrollbar thumb for Chrome, Safari, and Edge */
-    }
-
-    .icon {
-        display: inline-block;
-        width: 70px; /* Adjust size of icons */
-        height: 70px; /* Adjust size of icons */
-        margin: 0 10px;
-        border-radius: 50%; /* Make icons circular */
-        overflow: hidden;
-        transition: transform 0.3s;
-        background-color: rgba(255, 255, 255, 0.8); /* Glassy background */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for glassy effect */
-    }
-
-    .icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: transform 0.3s;
-    }
-
-    .icon:hover {
-        transform: scale(1.1);
-    }
-    .navbar-container {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
-            }
-
-            .navbar-column {
-                display: flex;
-                align-items: center;
-                margin-right: 20px; /* Adjust spacing */
-            }
-
-            .navbar-column a {
-                margin-right: 10px; /* Adjust spacing */
-                color: #333; /* Dark gray color */
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            .navbar-column a:hover {
-                color: #ff8c00; /* Orange color */
-            }
-
-            /* Media query for mobile devices */
-            @media screen and (max-width: 768px) {
-                .navbar-column {
-                    margin-right: 0; /* Remove right margin for better spacing on mobile */
-                }
-            }
-            .category-navbar {
-                display: flex;
-                justify-content: center;
-                background-color: #ffffff9b; /* Same background color as the navbar */
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                padding: 10px 0;
-                z-index: 1000;
-            }
-
-            .category-navbar-container {
-                max-width: 1200px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .category-navbar a {
-                margin-right: 20px; /* Adjust spacing */
-                color: #333; /* Dark gray color */
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            .category-navbar a:hover {
-                color: #ff8c00; /* Orange color */
-            }
-
-            /* Media query for mobile devices */
-            @media screen and (max-width: 768px) {
-                .category-navbar {
-                    padding: 10px; /* Adjust padding for better spacing on mobile */
-                }
-
-                .category-navbar-container {
-                    flex-direction: column; /* Stack items vertically on mobile */
-                    align-items: center; /* Center items vertically on mobile */
-                }
-
-                .category-navbar a {
-                    margin: 5px 0; /* Adjust margin for better spacing on mobile */
-                }
-            }
-            /* Media query for mobile devices */
-            @media screen and (max-width: 768px) {
-                .search-bar {
-                    display: none; /* Hide search bar on mobile */
-                }
-
-                .search-button-mobile {
-                    display: flex; /* Display search button on mobile */
-                    align-items: center;
-                    justify-content: center;
-                    padding: 0 10px;
-                }
-
-                .search-button-mobile button {
-                    background-color: transparent;
-                    border: none;
-                    font-size: 18px;
-                    color: #333; /* Dark gray color */
-                    cursor: pointer;
-                    transition: color 0.3s ease;
-                }
-
-                .search-button-mobile button:hover {
-                    color: #ff8c00; /* Orange color */
-                }
-            }   
-            @media screen and (min-width: 769px) {
-                .search-button-mobile {
-                    display: none; /* Hide search button on desktop */
-                }
-            }
-            @media screen and (max-width: 768px) {
-                .search-button-mobile {
-                    display: flex; /* Display search button on mobile */
-                    align-items: center;
-                    justify-content: center;
-                    padding: 0 10px;
-                }
-
-                .search-button-mobile button {
-                    background-color: transparent;
-                    border: none;
-                    font-size: 18px;
-                    color: #333; /* Dark gray color */
-                    cursor: pointer;
-                    transition: color 0.3s ease;
-                }
-
-                .search-button-mobile button:hover {
-                    color: #ff8c00; /* Orange color */
-                }
-
-                .interactive-cards {
-                    display: none; /* Hide all cards on mobile */
-                }
-            }
-
-            /* Media query for desktop devices */
-            @media screen and (min-width: 769px) {
-                .search-button-mobile {
-                    display: none; /* Hide search button on desktop */
-                }
-            }
-            @media screen and (min-width: 769px) {
-                .category-navbar b {
-                    display: none; /* Hide the "Shop By Category" text on desktop */
-                }
-            }
-            .icon {
-        display: inline-block;
-        width: 50px; /* Decreased width */
-        height: 50px; /* Decreased height */
-        margin: 0 5px; /* Adjusted margin */
-        border-radius: 50%; /* Make icons circular */
-        overflow: hidden;
-        transition: transform 0.3s;
-        background-color: rgba(255, 255, 255, 0.8); /* Glassy background */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for glassy effect */
-    }
-    .product {
-    margin-bottom: 20px; /* Add margin to create space between cards */
-    /* Other styles remain unchanged */
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto; /* Center the container */
-    padding: 20px;
-}
-
-/* Media query for smaller screens */
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 10px; /* Adjust padding for smaller screens */
-    }
-    .product {
-        width: 100%; /* Ensure full width for product cards on smaller screens */
-        margin-right: 0; /* Remove right margin to fit cards properly */
-    }
-}
-
-    
     </style>
 </head>
 <body>
-</div>
-    
-<nav class="navbar">
-  <div class="navbar-container">
-      <div class="logo">
-          <a href="index.html">
-          <span class="company-name">Easy Grocs</span>
-          <i class="fas fa-home"></i>
-          </a>
-      </div>
-      <div class="search-bar">
-          <a href="search.html">
-            
-              <input id="search-input" type="text" placeholder="Search...">
-              <button id="search-button"><i class="fas fa-search"></i></button>
-          </a>
-      </div>
-      
-      <div class="search-button-mobile">
-          <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
-      </div>
-  </div>
-</nav>  
-<nav class="category-navbar">
-    <div class="category-navbar-container">
-    <b><p>Shop By Brand</p></b>
-
-        <a href="#everest">Everest</a>
-        <a href="#Badshah">Badshah</a>
-        <a href="#Ramdev">Ramdev</a>  
-        
-    </div>
-    
-</nav>
-
-<nav class="category-navbar">
-    <div class="category-navbar-container">
-    <b><p>Shop By Price</p></b>
-
-        <a href="masala_product.html">10rs Special</a>
-        <a href="masala_products.html">15rs Special</a>
-        <a href="masala_products.html">20rs Special</a>  
-        
-    </div>
-    
-</nav>
-<div class="container">
-    <h1>Masala Section</h1>
-
-    <div id="Everest">
- 
-<h1>EVEREST MASALA SPECIALS</h1>
-    <div id="productContainer" style="display: flex; flex-wrap: wrap;">
-
-        <div  class="product">
-            <img src="https://www.xenfast.com/wp-content/uploads/2022/06/1-34.webp" alt="Product 1">
-            <div class="product-details">
-                <div class="product-name">Everest - Coriander Powder - 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Everest - Coriander Powder - 100G ', 10)">Add to Cart</button>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="index.html">
+                  <span class="company-name">Easy Grocs</span>
+                  <i class="fas fa-home"></i>
+                </a>
+            </div>
+            <div class="search-bar">
+                <a href="search.html">
+                    <input id="search-input" type="text" placeholder="Search...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </a>
+            </div>
+            <div class="search-button-mobile">
+                <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
             </div>
         </div>
-
-        <div class="product">
-            <img src="https://m.media-amazon.com/images/I/81xMTQInyML._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest BlackPepperPowder  100g</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Everest BlackPepperPowder 100g', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://m.media-amazon.com/images/I/81T7XoZ2b2L._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Garam Masala - 100g  </div>
-                <div class="product-price">Rs.52</div>
-                <button onclick="addToCart('Everest Garam Masala - 100g', 52.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://m.media-amazon.com/images/I/61hjaXERodL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Tikhalal - Red Chilli Powder </div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Everest Tikhalal - red chilli powder', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://m.media-amazon.com/images/I/71GZsVKyPwL.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Sabji Masala - 100g  </div>
-                <div class="product-price">Rs.38</div>
-                <button onclick="addToCart('Everest Sabji Masala', 38.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://m.media-amazon.com/images/I/61zO-8V6qPL.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Turmeric 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Everest Turmeric 100g', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-    </div>
+    </nav>
     <div class="container">
-        <h1></h1>
-    
-        <div id="Badshah">
+        <h1>Masala Products</h1>
+
+        <!-- Brand Headings -->
+        <div class="brand-heading">Everest</div>
+        <div id="everestProducts" style="display: flex; flex-wrap: wrap;">
+            <!-- Product cards for Everest masala will be dynamically added here -->
         </div>
-    <h1>BADSHAH MASALA SPECIALS</h1>
-        <div id="productContainer" style="display: flex; flex-wrap: wrap;">       
-        <div class="product">
-            <img src="https://www.sattvicfoods.in/cdn/shop/products/turmeric-powder-isolated-white.jpg?height=1946&pad_color=fff&v=1692947397&width=1946" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Badshah Turmeric 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Badshah Turmeric 100g', 10.00)">Add to Cart</button>
-            </div>
+
+        <div class="brand-heading">Ramdev</div>
+        <div id="ramdevProducts" style="display: flex; flex-wrap: wrap;">
+            <!-- Product cards for Ramdev masala will be dynamically added here -->
         </div>
-        <div class="product">
-            <img src="https://m.media-amazon.com/images/I/81QGnYp9r8L._AC_UF350,350_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Badshah Chilli Powder 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Badshah Chilli Powder 100g', 10.00)">Add to Cart</button>
-            </div>
+
+        <div class="brand-heading">Rajesh</div>
+        <div id="rajeshProducts" style="display: flex; flex-wrap: wrap;">
+            <!-- Product cards for Rajesh masala will be dynamically added here -->
         </div>
-</div>
-</div>
-<div class="container">
-
-
-    <div id="Ramdev">
     </div>
-<h1>RAMDEV MASALA SPECIALS</h1>
-    <div id="productContainer" style="display: flex; flex-wrap: wrap;">  
-<div class="product">
-    <img src="        https://m.media-amazon.com/images/I/71Pxp6L+2FL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-    <div class="product-details">
-        <div class="product-name">Ramdev Turmeric Powder 100g</div>
-        <div class="product-price">Rs.10</div>
-        <button onclick="addToCart('Ramdev Turmeric Powder 100g', 10.00)">Add to Cart</button>
-    </div>
-</div>
-<div class="product">
-    <img src="https://www.bigbasket.com/media/uploads/p/l/70001446_1-ramdev-coriander-powder.jpg" alt="Product 2">
-    <div class="product-details">
-        <div class="product-name">Ramdev Coriander Powder 100g</div>
-        <div class="product-price">Rs.10</div>
-        <button onclick="addToCart('Ramdev Coriander Powder 100g', 10.00)">Add to Cart</button>
-    </div>
-</div>
-<div class="product">
-    <img src="https://ramdevstore.com/wp-content/uploads/2023/09/biryani-pulao-masala.jpg.webp" alt="Product 2">
-    <div class="product-details">
-        <div class="product-name">Ramdev pulav masala 100g</div>
-        <div class="product-price">Rs.10</div>
-        <button onclick="addToCart('Ramdev pulav masala 100g', 10.00)">Add to Cart</button>
-    </div>
-</div>
-<div class="product">
-    <img src="https://ramdevstore.com/wp-content/uploads/2023/09/ramdev-chilli-powder-1.jpg" alt="Product 2">
-    <div class="product-details">
-        <div class="product-name">Ramdev Chilli Powder 100g</div>
-        <div class="product-price">Rs.60</div>
-        <button onclick="addToCart('Ramdev Chilli Powder 100g', 60.00)">Add to Cart</button>
-    </div>
-</div>
-    </div>
-</div>
 
-<a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
+    <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
 
-<div id="searchPopup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closeSearch()">&times;</span>
-        <input type="text" id="searchInputPopup" onkeyup="searchProducts()" placeholder="Search for products...">
-        <div id="searchResults"></div>
-    </div>
-</div>
-
-<div id="cart_popup"></div>
-
-<script>
-    function redirectToPage(nextPage) {
-    window.location.href = nextPage; 
-}
-
-    function scrollToBadsha() {
-            var element = document.getElementById("Badshah");
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        function scrollToEverest() {
-            var element = document.getElementById("Everest");
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        function scrollToRamdev() {
-            var element = document.getElementById("Ramdev");
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    function addToCart(name, price) {
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-        let found = false;
-        cartItems.forEach(item => {
-            if (item.name === name) {
-                item.quantity++;
-                found = true;
-            }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listener to the search button for mobile
+            document.getElementById('mobileSearchButton').addEventListener('click', function () {
+                // Redirect the user to search.html
+                window.location.href = 'search.html';
+            });
         });
 
-        if (!found) {
-            cartItems.push({ name: name, price: price, quantity: 1 });
+        function fetchMasalaProducts() {
+            fetch('product.html') // Fetching products from product.html
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    // Filter products by brand
+                    const productContainer = doc.getElementById('productContainer');
+                    const masalaProducts = Array.from(productContainer.getElementsByClassName('product'));
+
+                    const everestProducts = masalaProducts.filter(product => product.getAttribute('masala_brand') === 'Everest');
+                    const ramdevProducts = masalaProducts.filter(product => product.getAttribute('masala_brand') === 'Ramdev');
+                    const rajeshProducts = masalaProducts.filter(product => product.getAttribute('masala_brand') === 'Rajesh');
+
+                    // Generate HTML for each brand's products
+                    const everestProductsHTML = everestProducts.map(product => product.outerHTML).join('');
+                    const ramdevProductsHTML = ramdevProducts.map(product => product.outerHTML).join('');
+                    const rajeshProductsHTML = rajeshProducts.map(product => product.outerHTML).join('');
+
+                    // Append HTML to respective containers
+                    document.getElementById('everestProducts').innerHTML = everestProductsHTML;
+                    document.getElementById('ramdevProducts').innerHTML = ramdevProductsHTML;
+                    document.getElementById('rajeshProducts').innerHTML = rajeshProductsHTML;
+                })
+                .catch(error => console.error('Error fetching masala products:', error));
         }
 
-        localStorage.setItem('cart', JSON.stringify(cartItems));
+        // Call the function to fetch and display masala products when the page loads
+        window.onload = fetchMasalaProducts;
 
-        // Show pop-up message
-        showCartPopup(name);
-    }
+        function addToCart(name, price) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function showCartPopup(productName) {
-        const cartPopup = document.getElementById('cart_popup');
-        cartPopup.innerText = `${productName} added to cart!`;
-        cartPopup.style.display = 'block';
+            let found = false;
+            cartItems.forEach(item => {
+                if (item.name === name) {
+                    item.quantity++;
+                    found = true;
+                }
+            });
 
-        setTimeout(() => {
-            cartPopup.style.display = 'none';
-        }, 2000);
-    }
-
-    function openSearch() {
-        document.getElementById('searchPopup').style.display = 'flex';
-    }
-
-    function closeSearch() {
-        document.getElementById('searchPopup').style.display = 'none';
-    }
-
-    function searchProducts() {
-        let input, filter, products, productName, i;
-        input = document.getElementById('searchInputPopup');
-        filter = input.value.toUpperCase();
-        products = document.getElementById('productContainer').getElementsByClassName('product');
-        let searchResults = '';
-
-        for (i = 0; i < products.length; i++) {
-            productName = products[i].getElementsByClassName('product-name')[0];
-            if (productName.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                searchResults += products[i].outerHTML;
+            if (!found) {
+                cartItems.push({ name: name, price: price, quantity: 1 });
             }
+
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            // Show pop-up message
+            showCartPopup(name);
         }
 
-        document.getElementById('searchResults').innerHTML = searchResults;
-    }
-</script>
+        function showCartPopup(productName) {
+            const cartPopup = document.getElementById('cart_popup');
+            cartPopup.innerText = `${productName} added to cart!`;
+            cartPopup.style.display = 'block';
 
+            setTimeout(() => {
+                cartPopup.style.display = 'none';
+            }, 2000);
+        }
+
+        function openSearch() {
+            document.getElementById('searchPopup').style.display = 'flex';
+        }
+
+        function closeSearch() {
+            document.getElementById('searchPopup').style.display = 'none';
+        }
+    </script>
+    <div id="cart_popup"></div>
 </body>
 </html>
