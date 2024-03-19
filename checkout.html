@@ -64,20 +64,30 @@
 
   <!-- Cart Items Section -->
   <h2>Cart Items</h2>
-  <input type="text" id="cartItems" name="cartItems" readonly placeholder="Your Cart Details">
+  <div id="cartItemsContainer"></div>
+  <input type="hidden" id="cartItems" name="cartItems">
+  <!-- Order Number Section -->
+  <h2>Order Number</h2>
+  <input type="text" id="orderNumber" name="orderNumber" readonly>
 
   <input type="submit" value="Place Order">
 </form>
 
 <script>
-  // Fetch cart items from local storage
-  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Construct placeholder for cart details
-  let cartDetails = cartItems.map(item => `${item.name} - Rs.${item.price} - Quantity: ${item.quantity}`).join('\n');
+  // Construct cart items section
+  const cartItemsContainer = document.getElementById('cartItemsContainer');
+  cartItems.forEach(item => {
+    const cartItemDiv = document.createElement('div');
+    cartItemDiv.innerHTML = `<p>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}</p>`;
+    cartItemsContainer.appendChild(cartItemDiv);
+  });
 
-  // Display cart details in the placeholder
-  document.getElementById('cartItems').setAttribute('placeholder', cartDetails);
+  // Generate a unique order number
+  function generateOrderNumber() {
+    return 'ORD' + Math.random().toString(36).substr(2, 9);
+  }
 
   // Populate billing information if available in local storage
   let savedBillingInfo = JSON.parse(localStorage.getItem('billingInfo'));
@@ -94,6 +104,9 @@
     document.getElementById('city').value = savedShippingAddress.city;
     document.getElementById('zip').value = savedShippingAddress.zip;
   }
+
+  // Set order number
+  document.getElementById('orderNumber').value = generateOrderNumber();
 
   // Submit form event handler
   document.querySelector('#checkoutForm').addEventListener('submit', function(e) {
@@ -124,8 +137,10 @@
       };
       localStorage.setItem('shippingAddress', JSON.stringify(shippingAddress));
 
-      // Construct message body including cart items
-      let messageBody = `Billing Information:\n`;
+      // Construct message body including cart items and order number
+      let messageBody = `Order Number: ${document.getElementById('orderNumber').value}\n\n`;
+
+      messageBody += `Billing Information:\n`;
       messageBody += `Full Name: ${fullname}\n`;
       messageBody += `Email: ${document.getElementById('email').value}\n`;
       messageBody += `Phone Number: ${phone}\n\n`;
@@ -136,16 +151,14 @@
       messageBody += `ZIP Code: ${zip}\n\n`;
 
       messageBody += `Cart Items:\n`;
-      cartItems.forEach(item => {
-        messageBody += `${item.name} - Rs.${item.price} - Quantity: ${item.quantity}\n`;
-      });
+cartItems.forEach(item => {
+  messageBody += `${item.name} - Rs.${item.price} - Quantity: ${item.quantity}\n`;
+});
 
-      // Add the message body to the hidden input field
-      document.getElementById('cartItems').value = messageBody;
+// Set the hidden input field value to the message body
+document.getElementById('cartItems').value = messageBody;
     }
   });
 </script>
-
 </body>
 </html>
-
