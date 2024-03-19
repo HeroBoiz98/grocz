@@ -41,7 +41,7 @@
 
 <h1>Checkout</h1>
 
-<form id="checkoutForm" action="https://formspree.io/f/xeqyzlwn" method="POST" redirect="index.html">
+<form id="checkoutForm" action="https://formspree.io/f/xeqyzlwn" method="POST" target="_blank">
   <h2>Billing Information</h2>
   <label for="fullname">Full Name</label>
   <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
@@ -73,16 +73,22 @@
   <input type="submit" value="Place Order">
 </form>
 
-<script>
+<<script>
    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Construct cart items section
-  const cartItemsContainer = document.getElementById('cartItemsContainer');
-  cartItems.forEach(item => {
-    const cartItemDiv = document.createElement('div');
-    cartItemDiv.innerHTML = `<p>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}</p>`;
-    cartItemsContainer.appendChild(cartItemDiv);
-  });
+ // Construct cart items section
+const cartItemsContainer = document.getElementById('cartItemsContainer');
+cartItems.forEach(item => {
+  const cartItemDiv = document.createElement('div');
+  cartItemDiv.innerHTML = `<p>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}</p>`;
+  cartItemsContainer.appendChild(cartItemDiv);
+});
+
+// Convert cartItems object to JSON string
+const cartItemsJSON = JSON.stringify(cartItems);
+
+// Set the hidden input field value to the JSON string
+document.getElementById('cartItems').value = cartItemsJSON;
 
   // Generate a unique order number
   function generateOrderNumber() {
@@ -159,6 +165,121 @@ cartItems.forEach(item => {
 document.getElementById('cartItems').value = messageBody;
     }
   });
+  // Submit form event handler
+document.querySelector('#checkoutForm').addEventListener('submit', function(e) {
+    // Validate phone number, name, and address fields
+    let phone = document.getElementById('phone').value;
+    let fullname = document.getElementById('fullname').value;
+    let address = document.getElementById('address').value;
+    let city = document.getElementById('city').value;
+    let zip = document.getElementById('zip').value;
+
+    if (!phone || !fullname || !address || !city || !zip) {
+      alert("Please fill in all required fields: Phone Number, Full Name, Address, City, and ZIP Code.");
+      e.preventDefault(); // Prevent form submission
+    } else {
+      // Save billing information to local storage
+      let billingInfo = {
+        fullname: fullname,
+        email: document.getElementById('email').value,
+        phone: phone
+      };
+      localStorage.setItem('billingInfo', JSON.stringify(billingInfo));
+
+      // Save shipping information to local storage
+      let shippingAddress = {
+        address: address,
+        city: city,
+        zip: zip
+      };
+      localStorage.setItem('shippingAddress', JSON.stringify(shippingAddress));
+
+      // Construct cart items data as JSON
+      let cartItemsData = JSON.stringify(cartItems);
+
+      // Set the hidden input field value to the cart items data
+      document.getElementById('cartItems').value = cartItemsData;
+    }
+});
+// Submit form event handler
+document.querySelector('#checkoutForm').addEventListener('submit', function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+
+    // Validate phone number, name, and address fields
+    let phone = document.getElementById('phone').value;
+    let fullname = document.getElementById('fullname').value;
+    let address = document.getElementById('address').value;
+    let city = document.getElementById('city').value;
+    let zip = document.getElementById('zip').value;
+
+    if (!phone || !fullname || !address || !city || !zip) {
+        alert("Please fill in all required fields: Phone Number, Full Name, Address, City, and ZIP Code.");
+        return; // Stop further execution
+    }
+
+    // Save billing information to local storage
+    let billingInfo = {
+        fullname: fullname,
+        email: document.getElementById('email').value,
+        phone: phone
+    };
+    localStorage.setItem('billingInfo', JSON.stringify(billingInfo));
+
+    // Save shipping information to local storage
+    let shippingAddress = {
+        address: address,
+        city: city,
+        zip: zip
+    };
+    localStorage.setItem('shippingAddress', JSON.stringify(shippingAddress));
+
+    // Construct cart items data as JSON
+    let cartItemsData = JSON.stringify(cartItems);
+
+    // Set the hidden input field value to the cart items data
+    document.getElementById('cartItems').value = cartItemsData;
+
+    // Submit the form to Formspree
+    this.submit();
+
+    // Submit the form to Google Apps Script
+    submitToGoogleAppsScript();
+});
+
+// Function to submit form data to Google Apps Script
+function submitToGoogleAppsScript() {
+    // Construct an XMLHttpRequest to submit data to Google Apps Script
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://script.google.com/macros/s/AKfycbxSE3aHk2bzANidhVq1T6-jS6iFJ5NOOshPTF5N2uIpjwFBGuOqMD6DhAL-Qwsd3aPO/exec");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Construct the form data to send
+    var formData = new FormData();
+    formData.append("orderNumber", document.getElementById('orderNumber').value);
+    formData.append("fullname", document.getElementById('fullname').value);
+    formData.append("email", document.getElementById('email').value);
+    formData.append("phone", document.getElementById('phone').value);
+    formData.append("address", document.getElementById('address').value);
+    formData.append("city", document.getElementById('city').value);
+    formData.append("zip", document.getElementById('zip').value);
+    formData.append("cartItems", document.getElementById('cartItems').value);
+
+    // Log the form data before sending
+    console.log("Form Data to Google Apps Script:");
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    // Send the form data
+    xhr.send(formData);
+
+    // Log the completion of form submission
+    xhr.onload = function() {
+        console.log("Google Apps Script response:", xhr.responseText);
+    };
+}
+
 </script>
 </body>
 </html>
