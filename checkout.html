@@ -41,7 +41,7 @@
 
 <h1>Checkout</h1>
 
-<form id="checkoutForm" action="https://formspree.io/f/xeqyzlwn" method="POST" redirect="index.html">
+<form id="checkoutForm" action="https://script.google.com/macros/s/AKfycbyjhVAeoXHb50jr8xhSkV-RR6HAMSUgCrzy6YR0-jFna5iwfAeQ3NE_C9TBKAeq52MI/exec" method="POST" target="_blank">
   <h2>Billing Information</h2>
   <label for="fullname">Full Name</label>
   <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
@@ -56,7 +56,7 @@
   <label for="address">Address</label>
   <input type="text" id="address" name="address" placeholder="123 Main St" required>
 
-  <label for="city">City</label>
+  <label for="city">City</label>  
   <input type="text" id="city" name="city" placeholder="Anytown" required>
 
   <label for="zip">ZIP Code</label>
@@ -74,7 +74,7 @@
 </form>
 
 <script>
-   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
   // Construct cart items section
   const cartItemsContainer = document.getElementById('cartItemsContainer');
@@ -83,6 +83,12 @@
     cartItemDiv.innerHTML = `<p>${item.name} - Rs.${item.price} - Quantity: ${item.quantity}</p>`;
     cartItemsContainer.appendChild(cartItemDiv);
   });
+
+  // Convert cartItems object to JSON string
+  const cartItemsJSON = JSON.stringify(cartItems);
+
+  // Set the hidden input field value to the JSON string
+  document.getElementById('cartItems').value = cartItemsJSON;
 
   // Generate a unique order number
   function generateOrderNumber() {
@@ -110,55 +116,37 @@
 
   // Submit form event handler
   document.querySelector('#checkoutForm').addEventListener('submit', function(e) {
-    // Validate phone number, name, and address fields
-    let phone = document.getElementById('phone').value;
-    let fullname = document.getElementById('fullname').value;
-    let address = document.getElementById('address').value;
-    let city = document.getElementById('city').value;
-    let zip = document.getElementById('zip').value;
-
-    if (!phone || !fullname || !address || !city || !zip) {
-      alert("Please fill in all required fields: Phone Number, Full Name, Address, City, and ZIP Code.");
-      e.preventDefault(); // Prevent form submission
-    } else {
-      // Save billing information to local storage
-      let billingInfo = {
-        fullname: fullname,
-        email: document.getElementById('email').value,
-        phone: phone
-      };
-      localStorage.setItem('billingInfo', JSON.stringify(billingInfo));
-
-      // Save shipping information to local storage
-      let shippingAddress = {
-        address: address,
-        city: city,
-        zip: zip
-      };
-      localStorage.setItem('shippingAddress', JSON.stringify(shippingAddress));
-
-      // Construct message body including cart items and order number
-      let messageBody = `Order Number: ${document.getElementById('orderNumber').value}\n\n`;
-
-      messageBody += `Billing Information:\n`;
-      messageBody += `Full Name: ${fullname}\n`;
-      messageBody += `Email: ${document.getElementById('email').value}\n`;
-      messageBody += `Phone Number: ${phone}\n\n`;
-
-      messageBody += `Shipping Information:\n`;
-      messageBody += `Address: ${address}\n`;
-      messageBody += `City: ${city}\n`;
-      messageBody += `ZIP Code: ${zip}\n\n`;
-
-      messageBody += `Cart Items:\n`;
-cartItems.forEach(item => {
-  messageBody += `${item.name} - Rs.${item.price} - Quantity: ${item.quantity}\n`;
-});
-
-// Set the hidden input field value to the message body
-document.getElementById('cartItems').value = messageBody;
-    }
+    e.preventDefault(); // Prevent form submission
+    submitFormAndShowPopup();
   });
+
+  // Function to submit the form data to Google Sheets and then show a popup message
+  function submitFormAndShowPopup() {
+    let form = document.getElementById('checkoutForm');
+    let formData = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        // Form submitted successfully, show popup message
+        alert('Order successfully received!');
+        // Redirect to index.html after a short delay (optional)
+        setTimeout(function() {
+          window.location.href = 'index.html';
+        }, 1000);
+      } else {
+        throw new Error('Form submission failed.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    });
+  }
 </script>
+
 </body>
 </html>
