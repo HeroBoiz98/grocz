@@ -3,43 +3,404 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Under Development</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background-color: #f5f5f5;
+  <title>Electronics</title>
+  <Style>
+    .interactive-cards .card {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.interactive-cards .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    filter: blur(10px);
+    margin: -20px;
+}
+
+.interactive-cards .card h2,
+.interactive-cards .card p,
+.interactive-cards .card button {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add background images for each card */
+/* .interactive-cards .card:nth-child(1) {
+    background-image: url('images/Snacks.jpg');
+}
+
+.interactive-cards .card:nth-child(2) {
+    background-image: url('images/Dairy.jpg');
+}
+
+.interactive-cards .card:nth-child(3) {
+    background-image: url('images/drinks.jpg');
+}
+
+.interactive-cards .card:nth-child(4) {
+    background-image: url('images/HouseHolds.jpg');
+}
+
+.interactive-cards .card:nth-child(5) {
+    background-image: url('images/Soap.jpg');
+}
+
+.interactive-cards .card:nth-child(6) {
+    background-image: url('images/Masala.jpg');
+}
+
+.interactive-cards .card:nth-child(7) {
+    background-image: url('images/Electronics.jpg');
+} */
+
+.interactive-cards .card:hover {
+    transform: scale(1.05);
+}
+/* Add CSS styles for interactive cards */
+.interactive-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(90% - 20px);
+        max-width: calc(90% - 20px);
     }
+}
+.card {
+    flex: 0 1 calc(50% - 20px);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    }
+
+    .card h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    }
+
+    .card p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+    }
+
+    .card button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    }
+
+    .card button:hover {
+    background-color: #45a049;
+    }
+
+    @media screen and (max-width: 600px) {
+    .card {
+    flex: 0 1 calc(100% - 20px);
+    }
+    }
+
+
+    .interactive-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    }
+
+    .card {
+    flex: 0 1 calc(50% - 20px);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 10px 20px;
+    max-width: 400px;
+    }
+    .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    }
+
     h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+
     }
-    p {
-      font-size: 20px;
-      margin-bottom: 40px;
-      color: #666;
+    .card {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(90% - 20px);
+        max-width: calc(90% - 20px);
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
+}
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px;
     }
-  </style>
+
+    .logo {
+        text-align: center;
+    }
+
+    .search-bar {
+        flex: 1;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .category-navbar {
+        padding: 10px;
+    }
+
+    .category-navbar a {
+        margin-right: 10px;
+    }
+
+    .card {
+        flex: 0 1 calc(100% - 20px);
+    }
+
+    .slideshow-container {
+        display: flex;
+        justify-content: center; /* Center the slideshow horizontally */
+        align-items: center; /* Center the slideshow vertically */
+    }
+
+    .slide {
+        display: block;
+    }
+}
+\/* Interactive Cards */
+.interactive-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card {
+    flex: 0 1 calc(50% - 20px);
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.card h2 {
+    font-size: 20px;
+    color: #333; /* Dark text color */
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+    color: #777; /* Gray text color */
+    margin-bottom: 15px;
+}
+
+.card button {
+    background-color: #ff6b6b; /* Red color */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; /* Rounded border */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.card button:hover {
+    background-color: #ff8787; /* Lighter red color on hover */
+}
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Interactive Cards */
+        .interactive-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .card {
+            flex: 0 1 calc(30% - 20px);
+            max-width: calc(30% - 20px);
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .card button {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        .card button:hover {
+            background-color: #ff8787;
+        }
+
+        @media screen and (max-width: 768px) {
+            .card {
+                flex: 0 1 calc(50% - 20px);
+                max-width: calc(50% - 20px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .card {
+                flex: 0 1 calc(100% - 20px);
+                max-width: calc(100% - 20px);
+            }
+        }
+  </Style>
 </head>
 <body>
-
-<h1>Under Development</h1>
-<p>This page is currently under development. Please check back later.</p>
-
-
+  <div class="interactive-cards">
+    <!-- <div class="card">
+        <h2>Speaker</h2>
+        <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('snacks.html')">View Details</button>
+    </div> -->
+    <div class="card">
+        <h2>Mobile Accesories</h2>
+        <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('mobile_accessories.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Chargers</h2>
+        <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('charger.html')">View Details</button>
+    </div>
+    <!-- <div class="card">
+        <h2>Lights</h2>
+       <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('cold_drinks_product.html')">View Details</button>
+    </div> -->
+    <!-- <div class="card">
+        <h2>Fans</h2>
+       <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('House_Holds_Products.html')">View Details</button>
+    </div> -->
+    <!-- <div class="card">
+        <h2>Boards</h2>
+    <b> <p>EasyGroc</p></b>
+        <button onclick="redirectToPage('soap_and_shampoo_products.html')">View Details</button>
+    </div> -->
+    <!-- <div class="card">
+        <h2>Electrical Parts</h2>
+      <b>  <p>EasyGroc</p></b>
+        <button onclick="redirectToPage('masala_product.html')">View Details</button>
+    </div> -->
+    <!-- <div class="card">
+        <h2>Stove</h2>
+    <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('electronics.html')">View Details</button>
+    </div> -->
+</div>
 <script>
-  setTimeout(function() {
-    window.location.href = "index.html";
-  }, 3000);
+    function redirectToPage(page) {
+            window.location.href = page;
+        }
 </script>
-
 </body>
 </html>
