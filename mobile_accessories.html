@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Accessories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="index.html">
+                  <span class="company-name">Easy Grocs</span>
+                  <i class="fas fa-home"></i>
+                </a>
+            </div>
+            <div class="search-bar">
+                <a href="search.html">
+                    <input id="search-input" type="text" placeholder="Search...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </a>
+            </div>
+            <div class="search-button-mobile">
+                <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Mobile Accessories</h1>
+
+        <div id="mobileAccessories" style="display: flex; flex-wrap: wrap;">
+            <!-- Mobile accessories product cards will be dynamically added here -->
+        </div>
+    </div>
+
+    <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listener to the search button for mobile
+            document.getElementById('mobileSearchButton').addEventListener('click', function () {
+                // Redirect the user to search.html
+                window.location.href = 'search.html';
+            });
+        });
+
+        function fetchMobileAccessories() {
+            fetch('product.html') // Change the file name to your actual file containing mobile accessories products
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const mobileAccessoriesContainer = doc.getElementById('productContainer');
+                    const mobileAccessories = Array.from(mobileAccessoriesContainer.getElementsByClassName('product')).filter(product => product.getAttribute('data-category') === 'Electrical' && product.getAttribute('elec_category') === 'Mobile_Accessories');
+                    const mobileAccessoriesHTML = mobileAccessories.map(product => product.outerHTML).join('');
+                    document.getElementById('mobileAccessories').innerHTML = mobileAccessoriesHTML;
+                })
+                .catch(error => console.error('Error fetching mobile accessories:', error));
+        }
+
+        // Call the function to fetch and display mobile accessories products when the page loads
+        window.onload = fetchMobileAccessories;
+
+        function addToCart(name, price) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            let found = false;
+            cartItems.forEach(item => {
+                if (item.name === name) {
+                    item.quantity++;
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                cartItems.push({ name: name, price: price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            // Show pop-up message
+            showCartPopup(name);
+        }
+
+        function showCartPopup(productName) {
+            const cartPopup = document.getElementById('cart_popup');
+            cartPopup.innerText = `${productName} added to cart!`;
+            cartPopup.style.display = 'block';
+
+            setTimeout(() => {
+                cartPopup.style.display = 'none';
+            }, 2000);
+        }
+
+        function openSearch() {
+            document.getElementById('searchPopup').style.display = 'flex';
+        }
+
+        function closeSearch() {
+            document.getElementById('searchPopup').style.display = 'none';
+        }
+    </script>
+    <div id="cart_popup"></div>
+</body>
+</html>
