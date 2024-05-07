@@ -1,1045 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9402946388242349"
-     crossorigin="anonymous"></script>
+    
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/images/Logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
+         .dropdown {
+            position: relative;
+            display: inline-block;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .search-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .search-container input[type=text] {
-            padding: 10px;
-            width: 80%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .product {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            border-radius: 10px;
+        .dropbtn {
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            padding: 10px;
-            width: 150px;
-            height: 200px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-
-        .product img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-
-        .product-details {
-            text-align: center;
-            padding: 0 10px;
-        }
-
-        .product-name {
-            font-size: 14px;
-            font-weight: bold;
             color: #333;
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-
-        .product button {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 6px 12px;
+            font-size: 16px;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 12px;
         }
 
-        .product button:hover {
-            background-color: #45a049;
-        }
-
-        .popup {
+        .dropdown-content {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            z-index: 1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
-        .popup-content {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 80%;
-            max-height: 80%;
-            overflow-y: auto;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
             text-decoration: none;
-            cursor: pointer;
+            display: block;
         }
 
-        .cart-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .dropdown-content a:hover {
+            background-color: #f9f9f9;
         }
 
-        #cart_popup {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: rgba(0, 128, 0, 0.8);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: none;
-            z-index: 9999;
+        .show {
+            display: block;
         }
+        .category-navbar.mobile .category-navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Adjust padding as needed */
+}
+
+.category-navbar.mobile .category-navbar-container a {
+    text-decoration: none;
+    color: black; /* Change color as needed */
+}
+.carousel {
+            width: 100%; /* Default width for mobile */
+            overflow: hidden;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Media query for desktop */
+        @media screen and (min-width: 768px) {
+            .carousel img.mobile-image {
+                display: none; /* Hide mobile poster in desktop */
+            }
+            .carousel img.desktop-image {
+                display: block;
+                margin: 0 auto; /* Center the image */
+                width: 80%; /* Make the image fill 80% of the carousel */
+                max-width: 100%;
+            }
+        }
+
+        /* Media query for mobile */
+        @media screen and (max-width: 767px) {
+            .carousel img.desktop-image {
+                display: none; /* Hide desktop poster in mobile */
+            }
+        }
+        .carousel {
+            width: 100%; /* Default width for mobile */
+            overflow: hidden;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Media query for desktop */
+        @media screen and (min-width: 768px) {
+            .carousel img.mobile-image {
+                display: none; /* Hide mobile poster in desktop */
+            }
+            .carousel img.desktop-image {
+                display: block;
+                margin: 0 auto; /* Center the image */
+                width: 80%; /* Make the image fill 80% of the carousel */
+                max-width: 100%;
+            }
+            .carousel img.desktop-poster {
+                display: none; /* Hide Poster_1.png in desktop */
+            }
+        }
+
+        /* Media query for mobile */
+        @media screen and (max-width: 767px) {
+            .carousel img.desktop-image {
+                display: none; /* Hide desktop poster in mobile */
+            }
+        }
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #333333;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+  
+  .dropdown-content a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #333333;
+    transition: all 0.3s ease;
+    text-align: center;
+    
+  }
+  
+  .dropdown:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .dropdown::after {
+    content: "\25BE"; /* Unicode character for down arrow */
+    font-size: 10px;
+    margin-left: 5px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+  
+  .dropdown-content a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.dropdown {
+    /* Your existing dropdown styles */
+    /* Remove position: relative and display: inline-block */
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto; /* Center the dropdown horizontally */
+}
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown {
+    /* Your existing dropdown styles */
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-    <h1>Product Page</h1>
-
-    <div class="search-container">
-        <input type="text" id="searchInput" onclick="openSearch()" placeholder="Search for products...">
-    </div>
-
-    <div id="productContainer" style="display: flex; flex-wrap: wrap;">
-        <div class="product">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2022/7/AS/ND/AA/122190343/1649098208656-sku-0174-0.jpg" alt="Product 1">
-            <div class="product-details">
-                <div class="product-name">Lays</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Lays', 10)">Add to Cart</button>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="index.html">
+                  <b><span class="company-name">Easy Grocs</span></b>
+                  <i class="fas fa-home"></i>
+                </a>
+            </div>
+            <div class="search-bar">
+                <a href="search.html">
+                    <input id="search-input" type="text" placeholder="Search...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </a>
+            </div>
+            <div class="search-button-mobile">
+                <button id="mobileSearchButton"><i class="fas fa-search"></i></button>
             </div>
         </div>
-
-        <!-- <div class="product" data-category="dairy">
-            <img src="https://bigoffers.co.in/wp-content/uploads/2022/04/Amul-Gold-Milk-500ml.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Amul Doodh</div>
-                <div class="product-price">Rs.29</div>
-                <button onclick="addToCart('Amul', 29.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product">
-            <img src="https://bigoffers.co.in/wp-content/uploads/2022/04/Amul-Gold-Milk-500ml.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">shreekhand</div>
-                <div class="product-price">Rs.29</div>
-                <button onclick="addToCart('shreekhand', 29.00)">Add to Cart</button>
-            </div>
-       
-       
-        </div> -->
-       
-        <div class="product" data-category="dairy">
-            <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=900/app/assets/products/sliding_images/jpeg/5ee4441d-9109-48fa-9343-f5ce82b905a6.jpg?ts=1706182143" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Amul Taza 500ml</div>
-                <div class="product-price">Rs.30</div>
-                <button onclick="addToCart('Amul Taza 500ml', 30.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="dairy">
-            <img src="   https://5.imimg.com/data5/HH/SJ/XO/SELLER-40904399/200-g-amul-masti-dahi-500x500.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Amul Masti</div>
-                <div class="product-price">Rs.20</div>
-                <button onclick="addToCart('Amul Masti', 20.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="dairy">
-            <img src="  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAKi0Hn9sf3Jo7ZbV84VfpWvuGnB5o9eYKwe-kTGIMMG2FlZKwILYjZxTVB60XpXVRJnI&usqp=CAU" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Manali Milk</div>
-                <div class="product-price">Rs.30</div>
-                <button onclick="addToCart('Manali Milk', 30.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="dairy">
-            <img src="  data:image/jpeg;base64,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" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Manali Butter Milk</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Manali Butter Milk', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="dairy">
-            <img src=" https://5.imimg.com/data5/SELLER/Default/2022/11/FG/YG/OJ/3424661/new-product-250x250.jpeg">
-            <div class="product-details">
-                <div class="product-name">Manali Chaas </div>
-                <div class="product-price">Rs.17</div>
-                <button onclick="addToCart('Manali Chaas', 17.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="dairy">
-            <img src="https://www.starhealth.in/blog/wp-content/uploads/2023/09/Side-effects-of-eating-curd-everyday.png">
-                <div class="product-name">Gokulmn Curd</div>
-                <div class="product-price">Rs.25</div>
-                <button onclick="addToCart('Gokulm Special Curd', 25.00)">Add to Cart</button>
-            </div>
-            <div class="product" data-category="dairy">
-                <img src="https://www.thespruceeats.com/thmb/x8pfeCxZuRYP3-3VavQZqQgQaxo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/mint-lassi-2216233-hero-01-9909ebbb5705484c926c23559d96615f.jpg">
-                    <div class="product-name">Gokulmn Lassi</div>
-                    <div class="product-price">Rs.25</div>
-                    <button onclick="addToCart('Gokulm Lassi', 25.00)">Add to Cart</button>
-                </div>
-                <div class="product" data-category="dairy" brand="Cadbury">
-                    <img src="https://dsapanadryfruits.com/wp-content/uploads/2022/07/shopping-15.png">
-                        <div class="product-name">Dairy Milk -10-</div>
-                        <div class="product-price">Rs.10</div>
-                        <button onclick="addToCart('Dairy Milk', 10.00)">Add to Cart</button>
-                    </div>
-                    <div class="product" data-category="dairy" brand="Cadbury">
-                        <img src="https://frugivore-bucket.s3.amazonaws.com/media/package/img_one/2019-09-19/5_Star_20_Gm_1.jpg">
-                            <div class="product-name">Five Star</div>
-                            <div class="product-price">Rs.10</div>
-                            <button onclick="addToCart('Five Star', 10.00)">Add to Cart</button>
-                        </div>
-                        <div class="product" data-category="dairy" brand="Cadbury">
-                            <img src="https://m.media-amazon.com/images/I/61HGmZL8VXL.jpg">
-                                <div class="product-name">Dairy Milk -5rs-</div>
-                                <div class="product-price">Rs.5</div>
-                                <button onclick="addToCart('Dairy Milk',5.00)">Add to Cart</button>
-                            </div>
-        <!-- <div class="product" data-brand="Everest">
-            <img src="https://m.media-amazon.com/images/I/81T7XoZ2b2L._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Garam Masala - 100g  </div>
-                <div class="product-price">Rs.52</div>
-                <button onclick="addToCart('Everest Garam Masala - 100g', 52.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <div class="product" data-brand="Everest">
-            <!-- <img src="https://m.media-amazon.com/images/I/61hjaXERodL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Tikhalal - Red Chilli Powder </div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Everest Tikhalal - red chilli powder', 10.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product" data-brand="Badsha">
-            <img src="https://www.sattvicfoods.in/cdn/shop/products/turmeric-powder-isolated-white.jpg?height=1946&pad_color=fff&v=1692947397&width=1946" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Badshah Turmeric 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Badshah Turmeric 100g', 10.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product" data-brand="Badsha">
-            <img src="https://m.media-amazon.com/images/I/81QGnYp9r8L._AC_UF350,350_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Badshah Chilli Powder 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Badshah Chilli Powder 100g', 10.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product">
-            <img src="        https://m.media-amazon.com/images/I/71Pxp6L+2FL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Ramdev Turmeric Powder 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Ramdev Turmeric Powder 100g', 10.00)">Add to Cart</button>
-            </div>
-        </div> -->
-<!-- 
-        <div  class="product">
-            <img src="https://www.xenfast.com/wp-content/uploads/2022/06/1-34.webp" alt="Product 1">
-            <div class="product-details">
-                <div class="product-name">Everest - Coriander Powder - 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Everest - Coriander Powder - 100G ', 10)">Add to Cart</button>
-            </div>
-        </div> -->
-<!-- 
-        <div class="product" data-brand="Everest">
-            <img src="https://m.media-amazon.com/images/I/81xMTQInyML._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest BlackPepperPowder  100g</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Everest BlackPepperPowder 100g', 5.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/70001446_1-ramdev-coriander-powder.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Ramdev Coriander Powder 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Ramdev Coriander Powder 100g', 10.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product">
-            <img src="https://ramdevstore.com/wp-content/uploads/2023/09/biryani-pulao-masala.jpg.webp" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Ramdev pulav masala 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Ramdev pulav masala 100g', 10.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product">
-            <img src="https://ramdevstore.com/wp-content/uploads/2023/09/ramdev-chilli-powder-1.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Ramdev Chilli Powder 100g</div>
-                <div class="product-price">Rs.60</div>
-                <button onclick="addToCart('Ramdev Chilli Powder 100g', 60.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product" data-brand="Everest">
-            <img src="https://m.media-amazon.com/images/I/71GZsVKyPwL.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Sabji Masala - 100g  </div>
-                <div class="product-price">Rs.38</div>
-                <button onclick="addToCart('Everest Sabji Masala', 38.00)">Add to Cart</button>
-            </div>
-        </div> -->
-        <!-- <div class="product" data-brand="Everest">
-            <img src="https://m.media-amazon.com/images/I/61zO-8V6qPL.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest Turmeric 100g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Everest Turmeric 100g', 10.00)">Add to Cart</button>
-            </div>
-        </div> -->
-
-
-
-
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://www.kirana.store/image/cache/catalog/CINTHOL/download%20(17)-500x500.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Cinthol Soap -10-</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Cinthol Soap', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://image1.jdomni.in/product/28022021/1E/92/E8/0A7B280FAE3CA425DE531DAD26_1614496861587.png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Lux Jasmine & Vitamin E</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Lux Jasmine & Vitamin E', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/100006721_3-lux-soap-soft-glow-rose-vitamin-e.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Lux Soft & Glow</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('lux Soft & Glow', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2022/6/VR/UW/UX/154600901/santoor-orange-soap.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Santoor Total Skin Care</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Santoor Total Skin Care', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://www.kirana.store/image/cache/catalog/DETTOL%2012PKS/download-12-500x500.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Dettol</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Dettol', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://5.imimg.com/data5/VU/SU/IQ/IOS-96565405/product-jpeg.png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Lifebuoy</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Lifebuoy', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://img.udaan.com/v2/f_auto,q_auto:eco,w_800/u/products/fs6a456yww2apq2zbh24.jpg/Dove-soap-Rs-10---24-pcs-in-a-bundle-" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Dove</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Dove', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health">
-            <img src="https://5.imimg.com/data5/ECOM/Default/2023/2/KH/KL/ND/57586836/15e01755702d696a4d95147-bed6bf58-d3f8-4b25-814a-22362c45d32e-500x500.png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Godrej Lime & Aloe Vera</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Godrej Lime & Aloe Vera', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product" data-category="health" type="soap_bar">
-            <img src="https://img.thecdn.in/34186/1621243553000_SKU-1151_0.jpg?" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Patanjali Aloevera Kanti</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Patanjali Aloevera Kanti', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-
-            <div class="product" data-category="health" type="soap_bar">
-            <img src="https://edenthestore.in/uploads/products/7301.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Cinthol Cool</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Cinthol Cool', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://www.grocerybus.in/admin_panel/upload/images/2480-2022-03-27.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name"> Clinic Plus Strong and long Sachet</div>
-                <div class="product-price">Rs.1</div>
-                <button onclick="addToCart('Clinic Plus Strong and Long', 1.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://www.towntokri.com/wp-content/uploads/2023/04/sunsilk-black-shine-shampoo-pouch.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Sunshine Black Shine Sachet</div>
-                <div class="product-price">Rs.1</div>
-                <button onclick="addToCart('Sunsilk Black Sine', 1.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://5.imimg.com/data5/ANDROID/Default/2020/9/DZ/ZZ/XE/2841601/product-jpeg-500x500.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Vatika Sachet</div>
-                <div class="product-price">Rs.1</div>
-                <button onclick="addToCart('Vatika', 1.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://edenthestore.in/uploads/products/27601.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Heads And Shoulder</div>
-                <div class="product-price">Rs.2</div>
-                <button onclick="addToCart('Heads And Shoulder', 2.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://m.media-amazon.com/images/I/414l8t93TUL.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Dove Sachet</div>
-                <div class="product-price">Rs.2</div>
-                <button onclick="addToCart('Dove Sachet', 1.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://steptodoors.com/images/2023/7/IMG20230727162438-removebg-preview%20(4).png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Dove Shampoo + Conditioner</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Dove Shampoo + Conditioner', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://www.patanjaliayurved.net/assets/product_images/400x500/16895013521.png    " alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Kesh Kanti Natural Hair Cleanser</div>
-                <div class="product-price">Rs.1</div>
-                <button onclick="addToCart('Kesh Kanti Natural Hair Cleanser', 1.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health" type="shampoo_sachet">
-            <img src="https://www.patanjaliayurved.net/assets/product_images/400x500/16895012871.png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Kesh Kanti Aloevera & Neem Shampoo</div>
-                <div class="product-price">Rs.1</div>
-                <button onclick="addToCart('Kesh Kanti Aloevera & Neem Shampoo', 1.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health"  type="soap_bar">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/306184_20-liril-lime-tea-tree-oil-soap-refreshing-bathing-with-fragrance-freshness-of-lemon-paraben-sulphate-free-cleanser.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Liril Lime & Tree Oil Shampoo Body Soap</div>
-                <div class="product-price">Rs.38</div>
-                <button onclick="addToCart('Liril Lime & Tree Oil Shampoo Body Soap', 38.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health"  type="soap_bar">
-            <img src="https://hibacart.com/cdn/shop/products/a2199683b891c3d7705559f_b544e4d9-0bb5-4085-ba24-8d6df9c768be_460x@2x.png?v=1655733381" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name"> Godrej Sandal Body Soap</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Godrej Sandal Body Soap', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health"   type="soap_bar">
-            <img src="https://rukminim2.flixcart.com/image/850/1000/jwfa5jk0/soap/a/m/w/4-125-international-creamy-white-soap-bar-125-g-pack-of-4-lux-original-imaff2v2gghvgcz5.jpeg?q=90&crop=false" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Lux Creamy Perfection Body Soap</div>
-                <div class="product-price">Rs.40</div>
-                <button onclick="addToCart('Lux Creamy Perfection Body Soap', 40.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health"  type="cloth_soap_bar">
-            <img src="https://www.jiomart.com/images/product/original/490804603/active-wheel-2-in-1-detergent-bar-180-g-product-images-o490804603-p590032244-0-202208241712.jpg?im=Resize=(1000,1000)" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Wheel 2 in 1 Cloth Cleaner</div>
-                <div class="product-price">Rs.6</div>
-                <button onclick="addToCart('Wheel 2 in 1 Cloth Cleaner', 6.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health"  type="cloth_soap_bar">
-            <img src="https://familyneeds.co.in/cdn/shop/products/Surf-excel-90gm_600x600.png?v=1598703024" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Surf Excel Bar</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Surf Excel Bar', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health"  type="cloth_soap_bar">
-            <img src="https://www.jiomart.com/images/product/original/490804603/active-wheel-2-in-1-detergent-bar-180-g-product-images-o490804603-p590032244-0-202208241712.jpg?im=Resize=(1000,1000)" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Wheel 2 in 1 Cloth Cleaner</div>
-                <div class="product-price">Rs.6</div>
-                <button onclick="addToCart('Wheel 2 in 1 Cloth Cleaner', 6.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="health"  type="utensil_soap_bar">
-            <img src=" https://www.bigbasket.com/media/uploads/p/l/40038652_2-vim-dishwash-bar-lemon.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Vim Utensil Cleaner Bar</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Vim Utensil Cleaner Bar', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://m.media-amazon.com/images/I/51y5jzm5JHL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name"> Thumbs Up 750 ml</div>
-                <div class="product-price">Rs.40</div>
-                <button onclick="addToCart('Thumbs Up 750ml', 40.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://img.clevup.in/52988/1642678499665_SKU-0968_0.jpeg?width=600" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Thumbs Up 1L</div>
-                <div class="product-price">Rs.70</div>
-                <button onclick="addToCart('Thumbs Up 1L', 70.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=900/app/images/products/sliding_image/10562a.jpg?ts=1690812772" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Sprite 2L</div>
-                <div class="product-price">Rs.100</div>
-                <button onclick="addToCart('Sprite 2L', 100.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2021/10/PN/CT/UZ/63562818/5d952c8e-496b-4e57-98ec-6f1f893da0d9-500x500.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">T2 Soft Drink Lemon Flavoured 250ml</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('T2 Soft Drink Lemon Flavoured 250ml', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-
-
-
-        <div class="product" data-category="drink">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/251041_9-fanta-soft-drink-orange-flavoured.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Fanta 2L</div>
-                <div class="product-price">Rs.100</div>
-                <button onclick="addToCart('Fanta 2l', 100.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://silvassabottling.com/assets/product/20210420061206.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Gina Orange Flavour 250ml</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Gina Orange Flavour 250ml', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-       
-        <div class="product" data-category="drink">
-            <img src=" https://www.bigbasket.com/media/uploads/p/xxl/40113908_5-sting-energy-drink.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Sting Red 250ml</div>
-                <div class="product-price">Rs.20</div>
-                <button onclick="addToCart('Sting Red 250ml', 20.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2023/9/347422959/WD/SI/KD/106286638/stin.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Sting Blue 250ml</div>
-                <div class="product-price">Rs.20</div>
-                <button onclick="addToCart('Sting Blue 250ml', 20.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://www.bigbasket.com/media/uploads/p/xxl/40113907_5-sting-energy-drink.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Sting Can 250ml</div>
-                <div class="product-price">Rs.35</div>
-                <button onclick="addToCart('Sting Can 250ml', 35.00)">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product" data-category="drink">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/271119_5-appy-fizz-apple-juice-based-drink.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Appy Fizz 250ml</div>
-                <div class="product-price">Rs.20</div>
-                <button onclick="addToCart('Appy Fizz 250ml', 20.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src=" https://m.media-amazon.com/images/I/41lwWkYltmL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Bisleri</div>
-                <div class="product-price">Rs.20</div>
-                <button onclick="addToCart('Bisleri', 20.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://4.imimg.com/data4/HU/SI/MY-20824310/20-liter-water-jar.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Water Jar -FILLED-</div>
-                <div class="product-price">Rs.180</div>
-                <button onclick="addToCart('Water Jar -FILLED-', 180.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="drink">
-            <img src="https://4.imimg.com/data4/HU/SI/MY-20824310/20-liter-water-jar.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Water Jar -EMPTY-</div>
-                <div class="product-price">Rs.150</div>
-                <button onclick="addToCart('Water Jar -EMPTY-', 150.00)">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://5.imimg.com/data5/ECOM/Default/2023/3/FL/XW/OF/141449392/be9d450a-3d83-4fb9-bff4-0889dff38ddf-500x500.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Tomato Twist</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Tomato Twist', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/30010135_2-balaji-simply-salted-wafers.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Simply Salted  </div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Simply Salted', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.jiomart.com/images/product/original/490025526/balaji-masala-masti-potato-wafers-35-g-product-images-o490025526-p490025526-0-202311301430.jpg?im=Resize=(1000,1000)" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Masala Masti</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Masala Masti', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.jiomart.com/images/product/original/490868180/balaji-cream-onion-potato-wafers-150-g-product-images-o490868180-p490868180-0-202301091740.jpg?im=Resize=(1000,1000)" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Cream & Onion</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji -  Cream & Onion', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/40053589_2-balaji-namkeen-wheelos-masala.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Wheels - Masala Flavour</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Wheels', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.balajiwafers.com/wp-content/themes/custom/img/Product-Banner_bhel.png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Ratlami  Sev</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Ratlami Sev', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/294284_2-balaji-namkeens-chataka-pataka-masala-masti.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Chataka Pataka - Masala Masti</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Ballaji -  Chataka Paataka - Masala Masti', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://5.imimg.com/data5/DX/GF/LJ/SELLER-62643170/balaji-tangy-tomato-chataka-pataka-500x500.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Chataka Pataka - Tangy Tomato </div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Chataka Pataka - Tangy Tomato', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.jiomart.com/images/product/original/490025423/balaji-wafers-chana-dal-namkeen-50-g-product-images-o490025423-p490025423-0-202402162020.jpg?im=Resize=(1000,1000)" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Chana Dal</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Chana Dal', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/1227120_1-balaji-namkeen-shing-bhujiya.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Shing Bhujia </div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Shing Bhujia ', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/40275651_1-balaji-wafers-pop-rings-masala-crispy-crunchy-snack.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji  - Popring - Masala Flavour</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Popring Masala', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/40275652_1-balaji-wafers-pop-rings-yummy-cheese-crispy-crunchy-snack.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Popring - Yummy Cheese </div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Popring - Yummy Cheese ', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://images-cdn.ubuy.co.in/6357cf637598496a540406c5-balaji-wafers-flamin-hot-nachos-45-grams.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balji - Flamin Hot - Nachos</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Flamin Hot - Nachos', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/xxl/40275653_1-balaji-wafers-punjabi-tadka-authentic-taste-spicy-crunchy.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Punjabi Tadka</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/30010145_7-balaji-namkeen-aloo-sev.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Aloo Sev</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Aloo Sev', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8o2dDou3FS6VosDa7zWYaOhckqg_K-1tIuzrFSesTXHohwFYnmseeQEIOo1-ZoIz7tVM&usqp=CAU" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Funnne Spicy</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Funne Spicy', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://dukaan.b-cdn.net/700x700/webp/projecteagle/images/4cda3941-d067-4c46-ba8f-25dbf06a8493.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Chataka Pataka - Flamin Hot</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Chataka Pataka - Flamin Hot', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/xxl/40275640_1-balaji-wafers-gathiya-authentic-recipe-crispy-crunchy.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Gathiya</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Gathiya', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://ik.imagekit.io/dunzo/tr:w-$w$,h-$h$,cm-pad_resize/1615700672807_product_5fa3aa9cbf14a35e37c448ca_1.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Scoopitos    </div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Scoopitos', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/40053588_4-balaji-namkeen-sev-murmura-masala.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Masala Sev Murmura</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Masala Sev Murmura', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://thekkgroup.co.in/wp-content/uploads/2022/10/sev-Murmura.png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Sev Murmura</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Sev Murmura', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.indian-markt.com/cdn/shop/products/BalajiBhelMix-250g_590X668_crop_center.jpg?v=1653892747" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Bhel Mix</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Bhel Mix', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.grocerymars.com/Uploads/b_navratanbala" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji -  Navratna Mix</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Navratna Mix', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="snack" wafer_brand="balaji">
-            <img src="https://www.jiomart.com/images/product/original/490025429/balaji-wafers-mung-dal-namkeen-45-g-product-images-o490025429-p490025429-0-202310220320.jpg?im=Resize=(420,420)" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Balaji - Mung Dal</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Balaji - Mung Dal', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="masala" masala_brand="Everest">
-            <img src="https://m.media-amazon.com/images/I/7130dxPLawL.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Everest - Sabji Masala - 7g</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Everest -  Sabji Masala - 7g', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="masala"masala_brand="Ramdev">
-            <img src="https://ramdevstore.com/wp-content/uploads/2023/09/ramdev-chilli-powder-1.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Ramdev - Chilli Powder - 15g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Ramdev - Chilli Powder - 15g', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="masala" masala_brand="Ramdev">
-            <img src="https://ramdevstore.com/wp-content/uploads/2023/09/ramdev-coriander-powder.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Ramdev - Coriander Powder - 20g</div>
-                <div class="product-price">Rs.10</div>
-                <button onclick="addToCart('Ramdev - Coriander Powder - 20g', 10.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="masala" masala_brand="Rajesh">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHIs0oYPadEBFRSWC6bdMkZzx4Z0mAunMCF50WebhN-KqWPdHAzDFGouyQAgWsPNv5KM&usqp=CAU" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Rajesh - Garam Masala - 6g</div>
-                <div class="product-price">Rs.5</div>
-                <button onclick="addToCart('Rajesh - Garam Masala - 6g', 5.00)">Add to Cart</button>
-            </div>
-        </div>
-        <!-- Charger Section -->
-        <div class="product" data-category="Electrical" elec_category="Charger">
-            <img src="data:image/jpeg;base64,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" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni Charger VT30 - 22.5w</div>
-                <div class="product-price">Rs.510</div>
-                <button onclick="addToCart('Varni Charger - 22.5 W - Warranty - 3month', 510.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Charger">
-            <img src="data:image/jpeg;base64,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" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni Charger VT26 </div>
-                <div class="product-price">Rs.390</div>
-                <button onclick="addToCart('Varni Charger - VT26 - Warranty - 3month', 390.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Charger">
-            <img src="data:image/jpeg;base64,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" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni Charger VT21 </div>
-                <div class="product-price">Rs.320</div>
-                <button onclick="addToCart('Varni Charger - VT21 - Warranty - 3month', 320.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Charger">
-            <img src="https://m.media-amazon.com/images/I/41q-5cJjqDL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni Charger VT03 </div>
-                <div class="product-price">Rs.300</div>
-                <button onclick="addToCart('Varni Charger - V03 - Warranty - 3month', 300.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Charger">
-            <img src="        https://dsa-rd.s3.ap-south-1.amazonaws.com/1698836482172-img.png" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Target DM-31 - Dual USB - Fast Charger</div>
-                <div class="product-price">Rs.390</div>
-                <button onclick="addToCart('Target DM-31 - Dual USB - Fast Charger', 390.00)">Add to Cart</button>
-            </div>
-        </div>
-        <!-- Charger|Cable -->
-        <div class="product" data-category="Electrical" elec_category="Charger">
-            <img src="https://images.meesho.com/images/products/258842844/bmhyr_512.webp" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni Fast Charger - 2.1A Output</div>
-                <div class="product-price">Rs.129</div>
-                <button onclick="addToCart('Varni Fast Charger - 2.1A Output', 129.00)">Add to Cart</button>
-            </div>
-        </div>
-        <!-- Mobile Accesories -->
-        <div class="product" data-category="Electrical" elec_category="Mobile_Accessories">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvhcVyxHgB2ffU7QF2n4YefAar1C9sd95wkA&usqp=CAU" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni TWS - HiPods - 3hrs PlayTime</div>
-                <div class="product-price">Rs.1200</div>
-                <button onclick="addToCart('Varni TWS - HiPods - 3hrs PlayTime', 1200.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Mobile_Accessories">
-            <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/headphone/a/q/p/buds1-tws-with-60hr-playtime-hd-calling-enc-mode-super-bass-original-imagts8p3krvmeby.jpeg?q=90&crop=false" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni TWS - Ear-Buds - Buds 1</div>
-                <div class="product-price">Rs.1249</div>
-                <button onclick="addToCart('Varni TWS - Ear-Buds - Buds 1', 1249.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Mobile_Accessories">
-            <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/headphone/5/8/j/hitman-earbuds-with-25hrs-playtime-touch-control-lighting-fast-original-imags47yfqavgxzh.jpeg?q=20&crop=false" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni TWS - HitMan</div>
-                <div class="product-price">Rs.1100</div>
-                <button onclick="addToCart('Varni TWS - HitMan', 1100.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Mobile_Accessories">
-            <img src="data:image/jpeg;base64,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" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni TWS - AirBits</div>
-                <div class="product-price">Rs.999</div>
-                <button onclick="addToCart('Varni TWS - AirBits', 999.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Mobile_Accessories">
-            <img src="https://m.media-amazon.com/images/I/618JR5E-IsL._AC_UF350,350_QL50_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">Varni TWS - Big-B</div>
-                <div class="product-price">Rs.1499</div>
-                <button onclick="addToCart('Varni TWS - Big-B', 1499.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Mobile_Accessories">
-            <img src="https://m.media-amazon.com/images/I/51N9skAkxLL._SX522_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">UltraPods - Blue</div>
-                <div class="product-price">Rs.499</div>
-                <button onclick="addToCart('UltraPods - Blue', 499.00)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product" data-category="Electrical" elec_category="Mobile_Accessories">
-            <img src="https://m.media-amazon.com/images/I/612rtX-CSVL._SX679_.jpg" alt="Product 2">
-            <div class="product-details">
-                <div class="product-name">UltraPods - Green</div>
-                <div class="product-price">Rs.499</div>
-                <button onclick="addToCart('UltraPods - Green', 499.00)">Add to Cart</button>
-            </div>
-        </div>
-        <!-- Speaker -->
         
+    </nav>
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <span>Shop by Category</span>
+            <div class="dropdown-content">
+              <a href="#"></a>
+              <a href="masala_product.html">Masala / Spices</a>
+            <a href="snacks.html">Snacks </a>
+            <a href="dairy_products.html">Dairy</a>
+            <a href="electronics.html">Electronics</a>  
+            <a href="soap_and_shampoo_products.html">Soap & Shampoo</a>
+            <a href="cold_drinks_product.html">Cold Drinks</a>
+            <a href="House_Holds_Products.html">House holds</a>
+            </div>
+          </div>
+        </div>
+    
+    <!-- <nav class="category-navbar mobile">
+        <div class="category-navbar-container">
+            <b><p>Shop By Category</p></b>
+            <a href="masala_product.html">Masala / Spices</a>
+            <a href="snacks.html">Snacks </a>
+            <a href="dairy_products.html">Dairy</a>
+            <a href="electronics.html">Electronics</a>  
+            <a href="soap_and_shampoo_products.html">Soap & Shampoo</a>
+            <a href="cold_drinks_product.html">Cold Drinks</a>
+            <a href="House_Holds_Products.html">House holds</a>
+        </div>
+    </nav> -->
+    
+<div class="container">
 
+    <div class="icon-slider">
+        <a href="masala_product.html">
+        <div class="icon">
+            <img src="images/Masala.jpg" alt="Icon 1">
+ 
+        </div>
+    </a>
+    <a href="snacks.html">
+        <div class="icon">
+            <img src="images/Snacks.jpg" alt="Icon 3">
+           
+        </div>
+    </a> 
+        <a href="dairy_products.html">
+        <div class="icon">
+            <img src="images/Dairy.jpg" alt="Icon 2">
+      
+        </div>
+    </a>
+        <a href="electronics.html">
+        <div class="icon">
+            <img src="images/Electronics.jpg" alt="Icon 3">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </div>
+    </a>
+        <a href="soap_and_shampoo_products.html">
+        <div class="icon">
+            <img src="images/Soap.jpg" alt="Icon 3">
+        </div>
+        </a>
+        <a href="cold_drinks_product.html">
+        <div class="icon">
+            <img src="images/drinks.jpg" alt="Icon 3">
+           
+        </div>
+    </a>  
+    <a href="House_Holds_Products.html">
+        <div class="icon">
+            <img src="images/HouseHolds.jpg" alt="Icon 3">
+           
+        </div>
+    </a>  
+   
     </div>
+   
+    </div>
+    <div id="productContainer" style="display: none;">
+        <!-- Products will be displayed dynamically here -->
+    </div>
+
 </div>
 
 <a href="cart.html" class="cart-button"><i class="fas fa-shopping-cart"></i></a> <!-- Link to cart.html with cart icon -->
+        <!-- <div class="slideshow-container"> -->
+            <!-- <div class="slide fade">
+                <img src="images/Poster_1.png" alt="Product 1">
+            </div> -->
+            <!-- <div class="slide fade">
+                <img src="https://via.placeholder.com/1000x1000" alt="Product 2">
+            </div>
+            <div class="slide fade">
+                <img src="https://via.placeholder.com/1000x400" alt="Product 3">
+            </div> -->
+        </div>
+        <div class="carousel">
+            <img class="mobile-image" src="images/Poster_1.png" alt="Mobile Poster 1">
+            <!-- Additional image for desktop -->
+            <img class="desktop-image" src="images/Desktop_Poster_1.png" alt="Desktop Poster 1">
+        </div>
+<div class="brand-section">
+    <h2>Shop Now</h2>
+    <div class="brand-logos">
+        <a href="balaji.html">
+            <img src="https://play-lh.googleusercontent.com/dOqKedNbqj-l2uFSE8tAMTalL_z8MizPLv7QjkYF7jSqJQiNJ8Fj1q1Gb9tREUZSdg" alt="Brand 1">
+        </a>
+        <a href="cadbury.html">
+            <img src="https://www.snackhistory.com/wp-content/uploads/2022/05/Cadbury-Dairy-Milk-1.jpg" alt="Brand 2">
+        </a>
+        <a href="everest.html">
+            <img src="https://www.lakshmistores.com/cdn/shop/collections/download_b63cd332-6521-437f-9575-7e03e5606f9f.png?v=1639234681" alt="Brand 2">
+        </a>
+        <a href="Badshah.html">
+            <img src="data:image/png;base64,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" alt="Brand 2">
+        </a>
+    </div>
+  
+</div>
 
 <div id="searchPopup" class="popup">
     <div class="popup-content">
@@ -1048,10 +395,65 @@
         <div id="searchResults"></div>
     </div>
 </div>
-
+<div class="interactive-cards">
+    <div class="card">
+        <h2>Snacks</h2>
+        <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('snacks.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Dairy Products</h2>
+        <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('dairy_products.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Cold Drinks</h2>
+       <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('cold_drinks_product.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>House Holds</h2>
+       <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('House_Holds_Products.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Soap & Shampoo</h2>
+    <b> <p>EasyGroc</p></b>
+        <button onclick="redirectToPage('soap_and_shampoo_products.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Masala</h2>
+      <b>  <p>EasyGroc</p></b>
+        <button onclick="redirectToPage('masala_product.html')">View Details</button>
+    </div>
+    <div class="card">
+        <h2>Electronics</h2>
+    <b><p>EasyGroc</p></b>
+        <button onclick="redirectToPage('electronics.html')">View Details</button>
+    </div>
+</div>
 <div id="cart_popup"></div>
 
 <script>
+       document.addEventListener('DOMContentLoaded', function () {
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 5000,
+            },
+        });
+    });
+      function redirectToSearch() {
+        window.location.href = "search.html";
+    }
+    function redirectToPage(nextPage) {
+    window.location.href = nextPage; 
+}
+
     function addToCart(name, price) {
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -1107,37 +509,121 @@
 
         document.getElementById('searchResults').innerHTML = searchResults;
     }
-    function categorizeAndStoreProducts() {
-    let products = document.getElementsByClassName('product');
-    let dairyProducts = [];
-    let healthProducts = [];
-    let drinkProducts = [];
-    let snackProducts = [];
-     // Add a new array for snack products
 
-    for (let i = 0; i < products.length; i++) {
-        let category = products[i].getAttribute('data-category');
-        if (category === 'dairy') {
-            dairyProducts.push(products[i].outerHTML);
-        } else if (category === 'health') {
-            healthProducts.push(products[i].outerHTML);
-        } else if (category === 'drink') {
-            drinkProducts.push(products[i].outerHTML);
-        } else if (category === 'snack') { // Check for 'snack' category
-            snackProducts.push(products[i].outerHTML);
-        }
+    // Fetch products from product.html and display them
+    window.addEventListener('DOMContentLoaded', () => {
+        fetch('product.html')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const productDocument = parser.parseFromString(data, 'text/html');
+                const products = productDocument.getElementById('productContainer').innerHTML;
+                document.getElementById('productContainer').innerHTML = products;
+            })
+            
+            .catch(error => console.log('Error fetching products:', error));
+    });
+    function toggleSearchBar() {
+    const searchBar = document.querySelector('.search-bar');
+    if (window.innerWidth <= 768) { // Adjust the breakpoint as needed
+        searchBar.style.display = 'none';
+    } else {
+        searchBar.style.display = 'flex';
     }
-
-    localStorage.setItem('dairyProducts', JSON.stringify(dairyProducts));
-    localStorage.setItem('healthProducts', JSON.stringify(healthProducts));
-    localStorage.setItem('drinkProducts', JSON.stringify(drinkProducts));
-    localStorage.setItem('snackProducts', JSON.stringify(snackProducts)); // Store snack products
 }
 
-// Call the function to categorize and store products when the page loads
-window.onload = categorizeAndStoreProducts;
+// Call the function initially to set the initial state
+toggleSearchBar();
+
+// Add event listener for window resize to update the visibility of the search bar
+window.addEventListener('resize', toggleSearchBar);
+document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 5000,
+                },
+            });
+        });
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+           for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+}
+
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000); // Change image every 5 seconds
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener to the search button for mobile
+    document.getElementById('mobileSearchButton').addEventListener('click', function () {
+        // Redirect the user to search.html
+        window.location.href = 'search.html';
+    });
+});
+   // Add this JavaScript to toggle the dropdown
+   document.addEventListener('DOMContentLoaded', function () {
+            const dropbtn = document.querySelector('.dropbtn');
+            const dropdownContent = document.querySelector('.dropdown-content');
+
+            // Function to toggle the dropdown
+            function toggleDropdown() {
+                dropdownContent.classList.toggle('show');
+            }
+
+            dropbtn.addEventListener('click', toggleDropdown);
+
+            // Close the dropdown if the user clicks outside of it
+            window.addEventListener('click', function (event) {
+                if (!event.target.matches('.dropbtn')) {
+                    if (dropdownContent.classList.contains('show')) {
+                        dropdownContent.classList.remove('show');
+                    }
+                }
+            });
+        });
 
 
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const dropbtn = document.querySelector('.dropbtn');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    // Function to toggle the dropdown
+    function toggleDropdown() {
+        dropdownContent.classList.toggle('show');
+    }
+
+    // Add event listener to the dropbtn for click events
+    dropbtn.addEventListener('click', toggleDropdown);
+
+    // Add event listener to close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            if (dropdownContent.classList.contains('show')) {
+                dropdownContent.classList.remove('show');
+            }
+        }
+    });
+
+    // Add event listener to close the dropdown on touchstart if the user touches outside of it
+    window.addEventListener('touchstart', function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            if (dropdownContent.classList.contains('show')) {
+                dropdownContent.classList.remove('show');
+            }
+        }
+    });
+});
 
 </script>
 
