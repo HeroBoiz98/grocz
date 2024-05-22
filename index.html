@@ -9,18 +9,36 @@
             background-color: #f8d7da;
             color: #721c24;
             font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
         .container {
             border: 2px solid #f5c6cb;
             padding: 20px;
-            display: inline-block;
             background-color: #f8d7da;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            text-align: center;
         }
         .warning {
             font-size: 1.5em;
             font-weight: bold;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 0 0 10px;
+        }
+        @media (min-width: 600px) {
+            .container {
+                max-width: 600px;
+            }
+            .warning {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
